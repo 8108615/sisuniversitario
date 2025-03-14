@@ -380,7 +380,13 @@ return [
             'icon' => 'fas fa-fw fa-users-cog',
             'classes' => 'bg-blue text-white',
         ],
-        
+        [
+            'text' => 'Docente',
+            'url' => 'admin/docentes',
+            'icon' => 'fas fa-fw fa-chalkboard-teacher',
+            'classes' => 'bg-blue text-white',
+        ],
+                
     ],
 
     /*

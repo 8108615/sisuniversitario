@@ -386,6 +386,12 @@ return [
             'icon' => 'fas fa-fw fa-chalkboard-teacher',
             'classes' => 'bg-blue text-white',
         ],
+        [
+            'text' => 'Estudiante',
+            'url' => 'admin/estudiantes',
+            'icon' => 'fas fa-fw fa-user-graduate',
+            'classes' => 'bg-blue text-white',
+        ],
                 
     ],
 

@@ -114,7 +114,32 @@
             </div>
             <!-- /.info-box -->
         </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box zoomP">
+                <img src="{{ url('/img/docente.gif') }}" width="70px" alt="">
+                <div class="info-box-content">
+                    <span class="info-box-text"><b>Docentes Registrados</b></span>
+                    <span class="info-box-number">{{ $total_docentes }} Docentes</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box zoomP">
+                <img src="{{ url('/img/estudiantes.gif') }}" width="70px" alt="">
+                <div class="info-box-content">
+                    <span class="info-box-text"><b>Estudiantes Registrados</b></span>
+                    <span class="info-box-number">{{ $total_estudiantes }} Estudiantes</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
     </div>
+
+
 @stop
 
 @section('css')

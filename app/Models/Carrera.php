@@ -19,4 +19,13 @@ class Carrera extends Model
     {
         return $this->hasMany(Materia::class);
     }
+
+    public function matriculaciones(){
+        return $this->hasMany(Matriculacion::class);
+    }
+
+    public function gruposAcademico()
+    {
+        return $this->hasMany(Grupos_academico::class);
+    }
 }

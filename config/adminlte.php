@@ -359,7 +359,7 @@ return [
         
 
 
-        ['header' => 'Datos'],
+        ['header' => 'DATOS ACADÉMICOS'],
 
         [
             'text' => 'Roles',
@@ -382,14 +382,32 @@ return [
         ],
         [
             'text' => 'Docente',
-            'url' => 'admin/docentes',
+            
             'icon' => 'fas fa-fw fa-chalkboard-teacher',
             'classes' => 'bg-blue text-white',
+            'submenu' => [
+                [
+                    'text' => 'Listado de Docentes',
+                    'url' => 'admin/docentes',
+                    'classes' => 'bg-white text-black',
+                ],
+                [
+                    'text' => 'Grupos Academicos',
+                    'url' => 'admin/grupos_academicos',
+                    'classes' => 'bg-white text-black',
+                ],
+            ],
         ],
         [
             'text' => 'Estudiante',
             'url' => 'admin/estudiantes',
             'icon' => 'fas fa-fw fa-user-graduate',
+            'classes' => 'bg-blue text-white',
+        ],
+        [
+            'text' => 'Matriculaciones',
+            'url' => 'admin/matriculaciones',
+            'icon' => 'fas fa-fw fa-clipboard-list',
             'classes' => 'bg-blue text-white',
         ],
                 

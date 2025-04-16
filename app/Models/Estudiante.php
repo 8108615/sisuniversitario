@@ -13,4 +13,7 @@ class Estudiante extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function matriculaciones(){
+        return $this->hasMany(Matriculacion::class);
+    }
 }

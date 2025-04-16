@@ -14,4 +14,13 @@ class Nivel extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    public function matriculaciones(){
+        return $this->hasMany(Matriculacion::class);
+    }
+
+    public function gruposAcademico()
+    {
+        return $this->hasMany(Grupos_academico::class);
+    }
 }

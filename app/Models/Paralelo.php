@@ -14,4 +14,13 @@ class Paralelo extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    public function asignacionMaterias(){
+        return $this->hasMany(AsignacionMateria::class);
+    }
+
+    public function gruposAcademico()
+    {
+        return $this->hasMany(Grupos_academico::class);
+    }
 }

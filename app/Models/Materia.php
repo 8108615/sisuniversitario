@@ -20,4 +20,13 @@ class Materia extends Model
     {
         return $this->belongsTo(Carrera::class);
     }
+
+    public function asignacionMaterias(){
+        return $this->hasMany(AsignacionMateria::class);
+    }
+
+    public function gruposAcademico()
+    {
+        return $this->hasMany(Grupos_academico::class);
+    }
 }

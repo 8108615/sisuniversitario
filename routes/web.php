@@ -117,6 +117,16 @@ Route::delete('/admin/docentes/{id}', [App\Http\Controllers\DocenteController::c
 Route::post('/admin/docentes/createformacion/{id}', [App\Http\Controllers\DocenteFormacionController::class, 'store'])->name('admin.docentesformaciones.store')->middleware('auth');
 Route::delete('/admin/docentes/formacion/{id}', [App\Http\Controllers\DocenteFormacionController::class, 'destroy'])->name('admin.docentesformaciones.destroy')->middleware('auth');
 
+//Rutas para grupos academicos
+Route::get('/admin/grupos_academicos', [App\Http\Controllers\GruposAcademicoController::class, 'index'])->name('admin.grupos_academicos.index')->middleware('auth');
+Route::get('/admin/grupos_academicos/create', [App\Http\Controllers\GruposAcademicoController::class, 'create'])->name('admin.grupos_academicos.create')->middleware('auth');
+Route::get('/admin/grupos_academicos/buscar_docente/{id}', [App\Http\Controllers\GruposAcademicoController::class, 'buscar_docente'])->name('admin.grupos_academicos.buscar_docente')->middleware('auth');
+Route::post('/admin/grupos_academicos/create', [App\Http\Controllers\GruposAcademicoController::class, 'store'])->name('admin.grupos_academicos.store')->middleware('auth');
+Route::get('/admin/grupos_academicos/{id}/edit', [App\Http\Controllers\GruposAcademicoController::class, 'edit'])->name('admin.grupos_academicos.edit')->middleware('auth');
+Route::put('/admin/grupos_academicos/{id}', [App\Http\Controllers\GruposAcademicoController::class, 'update'])->name('admin.grupos_academicos.update')->middleware('auth');
+Route::delete('/admin/grupos_academicos/{id}', [App\Http\Controllers\GruposAcademicoController::class, 'destroy'])->name('admin.grupos_academicos.destroy')->middleware('auth');
+
+
 //Rutas para estudiantes
 Route::get('/admin/estudiantes', [App\Http\Controllers\EstudianteController::class, 'index'])->name('admin.estudiantes.index')->middleware('auth');
 Route::get('/admin/estudiantes/create', [App\Http\Controllers\EstudianteController::class, 'create'])->name('admin.estudiantes.create')->middleware('auth');
@@ -125,3 +135,22 @@ Route::get('/admin/estudiantes/{id}', [App\Http\Controllers\EstudianteController
 Route::get('/admin/estudiantes/{id}/edit', [App\Http\Controllers\EstudianteController::class, 'edit'])->name('admin.estudiantes.edit')->middleware('auth');
 Route::put('/admin/estudiantes/{id}', [App\Http\Controllers\EstudianteController::class, 'update'])->name('admin.estudiantes.update')->middleware('auth');
 Route::delete('/admin/estudiantes/{id}', [App\Http\Controllers\EstudianteController::class, 'destroy'])->name('admin.estudiantes.destroy')->middleware('auth');
+
+//Rutas para matriculaciones
+Route::get('/admin/matriculaciones', [App\Http\Controllers\MatriculacionController::class, 'index'])->name('admin.matriculaciones.index')->middleware('auth');
+Route::get('/admin/matriculaciones/create', [App\Http\Controllers\MatriculacionController::class, 'create'])->name('admin.matriculaciones.create')->middleware('auth');
+Route::post('/admin/matriculaciones/create', [App\Http\Controllers\MatriculacionController::class, 'store'])->name('admin.matriculaciones.store')->middleware('auth');
+Route::get('/admin/matriculaciones/{id}', [App\Http\Controllers\MatriculacionController::class, 'show'])->name('admin.matriculaciones.show')->middleware('auth');
+Route::get('/admin/matriculaciones/pdf/{id}', [App\Http\Controllers\MatriculacionController::class, 'pdf_matricula'])->name('admin.matriculaciones.pdf_matricula')->middleware('auth');
+Route::get('/admin/matriculaciones/{id}/edit', [App\Http\Controllers\MatriculacionController::class, 'edit'])->name('admin.matriculaciones.edit')->middleware('auth');
+Route::put('/admin/matriculaciones/{id}', [App\Http\Controllers\MatriculacionController::class, 'update'])->name('admin.matriculaciones.update')->middleware('auth');
+Route::delete('/admin/matriculaciones/{id}', [App\Http\Controllers\MatriculacionController::class, 'destroy'])->name('admin.matriculaciones.destroy')->middleware('auth');
+
+Route::get('/admin/matriculaciones/buscar_estudiante/{id}', [App\Http\Controllers\MatriculacionController::class, 'buscar_estudiante'])->name('admin.matriculaciones.buscar_estudiante')->middleware('auth');
+
+//Rutas para asignacion de Materias
+Route::post('/admin/matriculaciones/asignar_materia/create', [App\Http\Controllers\AsignacionMateriaController::class, 'store'])->name('admin.asignar_materia.store')->middleware('auth');
+Route::delete('/admin/matriculaciones/asignar_materia/{id}', [App\Http\Controllers\AsignacionMateriaController::class, 'destroy'])->name('admin.asignar_materia.destroy')->middleware('auth');
+Route::delete('/admin/matriculaciones/asignar_materia/{id}', [App\Http\Controllers\AsignacionMateriaController::class, 'destroy'])->name('admin.asignar_materia.destroy')->middleware('auth');
+
+//Rutas para grupos_academicos

@@ -29,4 +29,9 @@ class Docente extends Model
     {
         return $this->hasMany(DocenteFormacion::class);
     }
+
+    public function gruposAcademico()
+    {
+        return $this->hasMany(Grupos_academico::class);
+    }
 }

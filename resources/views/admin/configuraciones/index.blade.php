@@ -1,8 +1,7 @@
 @extends('adminlte::page')
 
-
 @section('content_header')
-    <h1>Configuraciones del Sistema</h1>
+    <h1>Configuraciones del sistema</h1>
     <hr>
 @stop
 
@@ -11,10 +10,11 @@
         <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title"> Llene los Datos del Formulario</h3>
+                  <h3 class="card-title">Lleno los datos del formulario</h3>
                 </div>
+                <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ url('admin/configuraciones/create') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('admin/configuraciones/create')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-8">
@@ -26,58 +26,60 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-university"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ old('nombre', $configuracion->nombre ?? '') }}" name="nombre" placeholder="nombre">
+                                                <input type="text" class="form-control" value="{{ old('nombre', $configuracion->nombre ?? '') }}" name="nombre" placeholder="Escriba aquí..." required>
                                             </div>
                                             @error('nombre')
-                                                <small style="color: red">{{ $message }}</small>
+                                            <small style="color: red">{{$message}}</small>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Descripcion</label><b> (*)</b>
+                                            <label for="">Descripción</label><b> (*)</b>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-align-left"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ old('descripcion', $configuracion->descripcion ?? '') }}" name="descripcion" placeholder="descripcion">
+                                                <input type="text" class="form-control" value="{{ old('descripcion', $configuracion->descripcion ?? '') }}" name="descripcion" placeholder="Escriba aquí..." required>
                                             </div>
                                             @error('descripcion')
-                                                <small style="color: red">{{ $message }}</small>
+                                            <small style="color: red">{{$message}}</small>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Direccion</label><b> (*)</b>
+                                            <label for="">Dirección</label><b> (*)</b>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-marker-alt"></i></span>
+                                                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ old('direccion', $configuracion->direccion ?? '') }}" name="direccion" placeholder="direccion">
+                                                <input class="form-control" value="{{ old('direccion', $configuracion->direccion ?? '') }}" name="direccion" placeholder="Escriba aquí..." required>
                                             </div>
                                             @error('direccion')
-                                                <small style="color: red">{{ $message }}</small>
+                                            <small style="color: red">{{$message}}</small>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Telefono</label><b> (*)</b>
+                                            <label for="">Teléfono</label><b> (*)</b>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ old('telefono', $configuracion->telefono ?? '') }}" name="telefono" placeholder="telefono">
+                                                <input type="text" class="form-control" value="{{ old('telefono', $configuracion->telefono ?? '') }}" name="telefono" placeholder="Escriba aquí..." required>
                                             </div>
                                             @error('telefono')
-                                                <small style="color: red">{{ $message }}</small>
+                                            <small style="color: red">{{$message}}</small>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -86,55 +88,59 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ old('email', $configuracion->email ?? '') }}" name="email" placeholder="email">
+                                                <input type="email" class="form-control" value="{{ old('email', $configuracion->email ?? '') }}" name="email" placeholder="Escriba aquí..." required>
                                             </div>
                                             @error('email')
-                                                <small style="color: red">{{ $message }}</small>
+                                            <small style="color: red">{{$message}}</small>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Sitio Web</label><b> (*)</b>
+                                            <label for="">Sitio Web</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-globe"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ old('web', $configuracion->telefono ?? '') }}" name="web" placeholder="web">
+                                                <input type="text" class="form-control" value="{{ old('web', $configuracion->web ?? '') }}" name="web" placeholder="Escriba aquí...">
                                             </div>
                                             @error('web')
-                                                <small style="color: red">{{ $message }}</small>
+                                            <small style="color: red">{{$message}}</small>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
+                            </div> 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="logo">Logo</label><b> (*)</b>
+                                    <label for="logo">Logo</label> <b> (*)</b>
                                     <input type="file" id="file" name="logo" accept=".jpg, .jpeg, .png" class="form-control">
                                     @error('logo')
-                                        <small style="color: red">{{ $message }}</small>
+                                    <small style="color: red;">{{$message}}</small>
                                     @enderror
                                     <br>
                                     <center>
                                         <output id="list">
                                             @if(isset($configuracion->logo))
-                                                <img class="thumb thumbnail" src="{{ url($configuracion->logo) }}" width="70%" title="Logo">
+                                                <img class="thumb thumbnail" src="{{url($configuracion->logo)}}" width="70%" title="Logo">
                                             @endif
                                         </output>
                                     </center>
                                     <script>
-                                        function archivo(evt){
-                                            var files = evt.target.files;
-                                            for(var i = 0, f; f = files[i]; i++){
-                                                if(!f.type.match('image.*')){
+                                        function archivo(evt) {
+                                            var files = evt.target.files; // FileList object
+                                            // Obtenemos la imagen del campo "file".
+                                            for (var i = 0, f; f = files[i]; i++) {
+                                                //Solo admitimos imágenes.
+                                                if (!f.type.match('image.*')) {
                                                     continue;
                                                 }
                                                 var reader = new FileReader();
                                                 reader.onload = (function (theFile) {
                                                     return function (e) {
-                                                        document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="', e.target.result, '" width="70%" title="', escape(theFile.name), '"/>'].join('');
+                                                        // Insertamos la imagen
+                                                        document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="',e.target.result, '" width="70%" title="', escape(theFile.name), '"/>'].join('');
                                                     };
                                                 })(f);
                                                 reader.readAsDataURL(f);
@@ -149,16 +155,15 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                <a href="{{ url('admin/configuraciones') }}" class="btn btn-secondary"> Cancelar</a>
+                                <a href="{{url('admin/configuraciones')}}" class="btn btn-secondary">Cancelar</a>
                             </div>
                         </div>
                     </form>
                 </div>
-            </div>
+                <!-- /.card-body -->
+              </div>
         </div>
     </div>
-
-    
 @stop
 
 @section('css')

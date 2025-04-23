@@ -396,6 +396,11 @@ return [
                     'url' => 'admin/grupos_academicos',
                     'classes' => 'bg-white text-black',
                 ],
+                [
+                    'text' => 'Horarios',
+                    'url' => 'admin/horarios',
+                    'classes' => 'bg-white text-black',
+                ],
             ],
         ],
         [

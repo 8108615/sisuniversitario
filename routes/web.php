@@ -27,7 +27,7 @@ Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->nam
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 
-//Rutas para configuraciones
+//rutas para configuraciones
 Route::get('/admin/configuraciones', [App\Http\Controllers\ConfiguracionController::class, 'index'])->name('admin.configuracion.index')->middleware('auth');
 Route::post('/admin/configuraciones/create', [App\Http\Controllers\ConfiguracionController::class, 'store'])->name('admin.configuracion.store')->middleware('auth');
 
@@ -125,6 +125,15 @@ Route::post('/admin/grupos_academicos/create', [App\Http\Controllers\GruposAcade
 Route::get('/admin/grupos_academicos/{id}/edit', [App\Http\Controllers\GruposAcademicoController::class, 'edit'])->name('admin.grupos_academicos.edit')->middleware('auth');
 Route::put('/admin/grupos_academicos/{id}', [App\Http\Controllers\GruposAcademicoController::class, 'update'])->name('admin.grupos_academicos.update')->middleware('auth');
 Route::delete('/admin/grupos_academicos/{id}', [App\Http\Controllers\GruposAcademicoController::class, 'destroy'])->name('admin.grupos_academicos.destroy')->middleware('auth');
+
+//Rutas para horarios
+Route::get('/admin/horarios', [App\Http\Controllers\HorarioController::class, 'index'])->name('admin.horarios.index')->middleware('auth');
+Route::get('/admin/horarios/create', [App\Http\Controllers\HorarioController::class, 'create'])->name('admin.horarios.create')->middleware('auth');
+Route::get('/admin/horarios/buscar_grupo_academico/{id}', [App\Http\Controllers\HorarioController::class, 'buscar_grupo_academico'])->name('admin.horarios.buscar_grupo_academico')->middleware('auth');
+Route::post('/admin/horarios/create', [App\Http\Controllers\HorarioController::class, 'store'])->name('admin.horarios.store')->middleware('auth');
+Route::get('/admin/horarios/{id}/edit', [App\Http\Controllers\HorarioController::class, 'edit'])->name('admin.horarios.edit')->middleware('auth');
+Route::put('/admin/horarios/{id}', [App\Http\Controllers\HorarioController::class, 'update'])->name('admin.horarios.update')->middleware('auth');
+Route::delete('/admin/horarios/{id}', [App\Http\Controllers\HorarioController::class, 'destroy'])->name('admin.horarios.destroy')->middleware('auth');
 
 
 //Rutas para estudiantes

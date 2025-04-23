@@ -41,4 +41,8 @@ class Grupos_academico extends Model
         return $this->belongsTo(Paralelo::class);
     }
 
+    public function horarios(){
+        return $this->hasMany(Horario::class);
+    }
+
 }

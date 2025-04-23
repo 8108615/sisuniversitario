@@ -37,20 +37,25 @@ class ConfiguracionController extends Controller
             'email' => 'required|email|max:255',
             'web' => 'nullable|url|max:255',
             'logo' => 'image|mimes:jpeg,png,jpg',
-
         ]);
+
+        // Buscar si existe un registro
         $configuracion = Configuracion::first();
 
-        if($request->hasFile('logo')){
+        // Si hay un archivo de logo, lo procesamos
+        if ($request->hasFile('logo')) {
             $logo = $request->file('logo');
-            $nombreArchivo = time(). '_' . $logo->getClientOriginalName();
+            $nombreArchivo = time() . '_' . $logo->getClientOriginalName();
             $rutaDestino = public_path('uploads/logos');
-            $logo->move($rutaDestino,$nombreArchivo);
-            $logoPath = 'uploads/logos' . $nombreArchivo;
-        }else{
+            $logo->move($rutaDestino, $nombreArchivo);
+            $logoPath = 'uploads/logos/' . $nombreArchivo;
+        } else {
+            // Si no se sube un nuevo logo, mantener el actual
             $logoPath = $configuracion->logo ?? null;
         }
-        if($configuracion){
+
+        if ($configuracion) {
+            // Si existe, actualizar
             $configuracion->update([
                 'nombre' => $request->nombre,
                 'descripcion' => $request->descripcion,
@@ -60,7 +65,8 @@ class ConfiguracionController extends Controller
                 'web' => $request->web,
                 'logo' => $logoPath,
             ]);
-        }else {
+        } else {
+            // Si no existe, crear uno nuevo
             Configuracion::create([
                 'nombre' => $request->nombre,
                 'descripcion' => $request->descripcion,
@@ -70,12 +76,11 @@ class ConfiguracionController extends Controller
                 'web' => $request->web,
                 'logo' => $logoPath,
             ]);
-            
         }
 
         return redirect()->back()
-                ->with('mensaje','Configuracion Guardada Correctamente')
-                ->with('icono','success');
+            ->with('mensaje', 'Configuración guardada correctamente')
+            ->with('icono', 'success');
     }
 
     /**

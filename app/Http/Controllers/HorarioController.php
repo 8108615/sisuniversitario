@@ -35,7 +35,7 @@ class HorarioController extends Controller
             return response()->json(['error'=>'Grupo no Encontrado']);
         }
 
-        $grupoAcademico->foto_url = url($grupoAcademico->foto);
+        $grupoAcademico->foto_url = url($grupoAcademico->docente->foto);
         return response()->json($grupoAcademico);
     }
 

@@ -23,7 +23,19 @@
                         <thead>
                         <tr>
                             <th style="text-align: center">Nro</th>
-                            
+                            <th style="text-align: center">Docente</th>
+                            <th style="text-align: center">Gestion</th>
+                            <th style="text-align: center">Nivel</th>
+                            <th style="text-align: center">Periodo</th>
+                            <th style="text-align: center">Carrera</th>
+                            <th style="text-align: center">Materia</th>
+                            <th style="text-align: center">Turno</th>
+                            <th style="text-align: center">Paralelo</th>
+                            <th style="text-align: center">Cupos</th>
+                            <th style="text-align: center">Dias</th>
+                            <th style="text-align: center">Hora Inicio</th>
+                            <th style="text-align: center">Hora Fin</th>
+                            <th style="text-align: center">Aula</th>
                             <th style="text-align: center">Acción</th>
                         </tr>
                         </thead>
@@ -34,6 +46,19 @@
                         @foreach($horarios as $horario)
                             <tr>
                                 <td style="text-align: center">{{$contador++}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->docente->apellidos}} {{$horario->grupoAcademico->docente->nombres}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->gestion->nombre}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->nivel->nombre}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->periodo->nombre}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->carrera->nombre}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->materia->nombre}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->turno->nombre}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->paralelo->nombre}}</td>
+                                <td style="text-align: center">{{$horario->grupoAcademico->cupo_maximo}}</td>
+                                <td style="text-align: center">{{$horario->dia}}</td>
+                                <td style="text-align: center">{{$horario->hora_inicio}}</td>
+                                <td style="text-align: center">{{$horario->hora_fin}}</td>
+                                <td style="text-align: center">{{$horario->aula}}</td>
                                 
                                 <td style="text-align: center">
                                     <div class="btn-group" role="group" aria-label="Basic example">

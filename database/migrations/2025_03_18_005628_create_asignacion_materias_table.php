@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('matriculacion_id')->constrained('matriculacions')->onDelete('cascade');
-            $table->foreignId('materia_id')->constrained('materias')->onDelete('cascade');
-            $table->foreignId('turno_id')->constrained('turnos')->onDelete('cascade');
-            $table->foreignId('paralelo_id')->constrained('paralelos')->onDelete('cascade');
-
+            $table->foreignId('grupo_academico_id')->constrained('grupos_academicos')->onDelete('cascade');
+            
             $table->enum('estado',['activo','inactivo','aprobo','reprobo']);
             $table->decimal('nota_final',5,2)->nullable();
             $table->date('fecha_asignacion');

@@ -42,7 +42,7 @@ class Grupos_academico extends Model
     }
 
     public function horarios(){
-        return $this->hasMany(Horario::class);
+        return $this->hasMany(Horario::class,'grupo_academico_id');
     }
 
 }

@@ -7,6 +7,7 @@ use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Estudiante;
 use App\Models\Gestion;
+use App\Models\Grupos_academico;
 use App\Models\Materia;
 use App\Models\Matriculacion;
 use App\Models\Nivel;
@@ -25,14 +26,14 @@ class MatriculacionController extends Controller
      */
     public function index()
     {
-
+        $grupoAcademicos = Grupos_academico::with('materia','turno','paralelo','horarios')->get();
         $matriculaciones = Matriculacion::with('estudiante','gestion','nivel','periodo','carrera')->get();
         $materias = Materia::all();
         $turnos = Turno::all();
         $paralelos = Paralelo::all();
         $asignacionMaterias = AsignacionMateria::with('materia','turno','paralelo')->get();
         //return response()->json($matriculaciones);
-        return view('admin.matriculaciones.index',compact('matriculaciones','materias','turnos','paralelos','asignacionMaterias'));
+        return view('admin.matriculaciones.index',compact('matriculaciones','materias','turnos','paralelos','asignacionMaterias','grupoAcademicos'));
     }
 
     /**

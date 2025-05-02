@@ -55,7 +55,7 @@
                                         
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal{{ $matriculacione->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
+                                            <div class="modal-dialog modal-xl">
                                             <div class="modal-content">
                                                 <div class="modal-header" style="background-color: #17a2b8; color:white">
                                                 <h5 class="modal-title" id="exampleModalLabel">Asignacion de Materias</h5>
@@ -126,6 +126,59 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                    <hr>
+                                                    <br><br>
+                                                    <hr>
+                                                    <table id="example2" class="table table-bordered table-hover table-striped table-sm">
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="text-align: center">Nro</th>
+                                                            <th style="text-align: center">Docente</th>
+                                                            <th style="text-align: center">Gestion</th>
+                                                            <th style="text-align: center">Nivel</th>
+                                                            <th style="text-align: center">Periodo</th>
+                                                            <th style="text-align: center">Carrera</th>
+                                                            <th style="text-align: center">Materia</th>
+                                                            <th style="text-align: center">Turno</th>
+                                                            <th style="text-align: center">Paralelo</th>
+                                                            <th style="text-align: center">Cupos</th>
+                                                            <th style="text-align: center">Horarios</th>
+                                                            <th style="text-align: center">Acción</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @php
+                                                            $contador = 1;
+                                                        @endphp
+                                                        @foreach($grupoAcademicos as $grupoAcademico)
+                                                            @if ($grupoAcademico->carrera_id == $matriculacione->carrera_id && $grupoAcademico->periodo_id == $matriculacione->periodo_id && $grupoAcademico->nivel_id == $matriculacione->nivel_id && $grupoAcademico->gestion_id == $matriculacione->gestion_id)
+                                                            <tr>
+                                                                <td style="text-align: center">{{$contador++}}</td>
+                                                                <td>{{ $grupoAcademico->docente->apellidos.' '.$grupoAcademico->docente->nombres }}</td>
+                                                                <td>{{ $grupoAcademico->gestion->nombre }}</td>
+                                                                <td>{{ $grupoAcademico->nivel->nombre }}</td>
+                                                                <td>{{ $grupoAcademico->periodo->nombre }}</td>
+                                                                <td>{{ $grupoAcademico->carrera->nombre }}</td>
+                                                                <td>{{ $grupoAcademico->materia->nombre }}</td>
+                                                                <td>{{ $grupoAcademico->turno->nombre }}</td>
+                                                                <td>{{ $grupoAcademico->paralelo->nombre }}</td>
+                                                                <td>{{ $grupoAcademico->cupo_maximo }}</td>
+                                                                <td>
+                                                                    @foreach($grupoAcademico->horarios as $horario)
+                                                                        <p style="margin: 0px; padding: 0px;">{{ $horario->dia }}: {{ $horario->hora_inicio }} - {{ $horario->hora_fin }}</p>
+                                                                    @endforeach
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                                        <a href="{{url('/admin/grupos_academicos/'.$grupoAcademico->id.'/edit')}}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                                        
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            @endif
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
                                                     <hr>
                                                     <form action="{{ url('/admin/matriculaciones/asignar_materia/create') }}" method="POST">
                                                         @csrf
@@ -288,6 +341,33 @@
                     { text: '<i class="fas fa-print"></i> IMPRIMIR', extend: 'print', className: 'btn btn-warning' }
                 ]
             }).buttons().container().appendTo('#example1_wrapper .row:eq(0)');
+        });
+
+        $(function () {
+            $("#example2").DataTable({
+                "pageLength": 5,
+                "language": {
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Grupo Academicos",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 Grupo Academicos",
+                    "infoFiltered": "(Filtrado de _MAX_ total Grupo Academicos)",
+                    "lengthMenu": "Mostrar _MENU_ Grupo Academicos",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscador:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                
+            }).buttons().container().appendTo('#example2_wrapper .row:eq(0)');
         });
     </script>
 @stop

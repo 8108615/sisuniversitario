@@ -145,8 +145,8 @@
                                                     <option value="">Seleccione el Academico...</option>
                                                     @foreach($niveles as $nivel)
                                                         <option value="{{ $nivel->id }}"
-                                                            {{ old('nivel_id', $nivel->id) == $grupoAcademico->nivel_id ? 'selected' : '' }}
-                                                            >{{ $nivel->nombre }}</option>
+                                                            {{ old('nivel_id', $nivel->id) == $grupoAcademico->nivel_id ? 'selected' : '' }}>
+                                                            {{ $nivel->nombre }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

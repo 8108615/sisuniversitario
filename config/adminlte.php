@@ -396,12 +396,14 @@ return [
                     'url' => 'admin/grupos_academicos',
                     'classes' => 'bg-white text-black',
                 ],
-                [
-                    'text' => 'Horarios',
-                    'url' => 'admin/horarios',
-                    'classes' => 'bg-white text-black',
-                ],
+                
             ],
+        ],
+        [
+            'text' => 'Horarios',
+            'url' => 'admin/horarios',
+            'icon' => 'fas fa-fw fa-clock',
+            'classes' => 'bg-blue text-white',
         ],
         [
             'text' => 'Estudiante',

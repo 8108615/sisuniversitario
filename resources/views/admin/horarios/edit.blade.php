@@ -2,7 +2,7 @@
 
 
 @section('content_header')
-    <h1>Horarios/Registro de un Nuevo Horario</h1>
+    <h1>Horarios/Editar Horario</h1>
     <hr>
 @stop
 
@@ -12,11 +12,11 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary">
+                    <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">Datos del Grupo Academico</h3>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                     Buscar Grupo Academico
                                 </button>
                             </div>
@@ -35,19 +35,19 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="">Nombres</label>
-                                                                <p id="nombres"></p>
+                                                                <p id="nombres">{{ $horario->grupoAcademico->docente->nombres }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="">Apellidos</label>
-                                                                <p id="apellidos"></p>
+                                                                <p id="apellidos">{{ $horario->grupoAcademico->docente->apellidos }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="">CI</label>
-                                                                <p id="ci"></p>
+                                                                <p id="ci">{{ $horario->grupoAcademico->docente->ci }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -55,19 +55,19 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="">Fecha de Nacimiento</label>
-                                                                <p id="fecha_nacimiento"></p>
+                                                                <p id="fecha_nacimiento">{{ $horario->grupoAcademico->docente->fecha_nacimiento }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="">Telefono</label>
-                                                                <p id="telefono"></p>
+                                                                <p id="telefono">{{ $horario->grupoAcademico->docente->telefono }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="">Profesion</label>
-                                                                <p id="profesion"></p>
+                                                                <p id="profesion">{{ $horario->grupoAcademico->docente->profesion }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -75,19 +75,19 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="">Email</label>
-                                                                <p id="email"></p>
+                                                                <p id="email">{{ $horario->grupoAcademico->docente->usuario->email }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="">Direccion</label>
-                                                                <p id="direccion"></p>
+                                                                <p id="direccion">{{ $horario->grupoAcademico->docente->direccion }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <img src="" id="foto_docente" width="60%"
+                                                    <img src="{{ url($horario->grupoAcademico->docente->foto) }}" id="foto_docente" width="60%"
                                                         alt="fotografia del docente">
                                                 </div>
                                             </div>
@@ -108,7 +108,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary">
+                    <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">Datos para el Grupo Academico</h3>
                         </div>
@@ -122,7 +122,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-book"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="" id="gestion_id"
+                                            <input type="text" class="form-control" value="{{ $horario->grupoAcademico->gestion->nombre }}" name="" id="gestion_id"
                                                 readonly>
                                         </div>
                                     </div>
@@ -134,7 +134,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="" id="nivel_id"
+                                            <input type="text" class="form-control" value="{{ $horario->grupoAcademico->nivel->nombre }}" name="" id="nivel_id"
                                                 readonly>
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="" id="carrera_id"
+                                            <input type="text" class="form-control" value="{{ $horario->grupoAcademico->carrera->nombre }}" name="" id="carrera_id"
                                                 readonly>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="" id="periodo_id"
+                                            <input type="text" class="form-control" value="{{ $horario->grupoAcademico->periodo->nombre }}" name="" id="periodo_id"
                                                 readonly>
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-book"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="" id="materia_id"
+                                            <input type="text" class="form-control" value="{{ $horario->grupoAcademico->materia->nombre }}" name="" id="materia_id"
                                                 readonly>
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="" id="turno_id"
+                                            <input type="text" class="form-control" value="{{ $horario->grupoAcademico->turno->nombre }}" name="" id="turno_id"
                                                 readonly>
                                         </div>
                                     </div>
@@ -199,7 +199,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="" id="paralelo_id"
+                                            <input type="text" class="form-control" value="{{ $horario->grupoAcademico->paralelo->nombre }}" name="" id="paralelo_id"
                                                 readonly>
                                         </div>
                                     </div>
@@ -210,7 +210,7 @@
                                         <label for="">Nro Cupos</label><b>(*)</b>
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" name="cupo_maximo"
-                                                id="cupo_maximo" readonly>
+                                                id="cupo_maximo"value="{{ $horario->grupoAcademico->cupo_maximo }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -225,18 +225,19 @@
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary">
+                    <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">Datos del Horario</h3>
 
                         </div>
                         <div class="card-body">
-                            <form action="{{ url('admin/horarios/create') }}" method="POST">
+                            <form action="{{ url('admin/horarios/' . $horario->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="grupo_academico_id" id="grupo_academico_id" hidden>
+                                            <input type="text" name="grupo_academico_id" value="{{ $horario->grupoAcademico->id }}" id="grupo_academico_id" hidden>
                                             <label>Dia</label><b> (*)</b>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -245,12 +246,12 @@
                                                 </div>
                                                 <select name="dia" class="form-control" required>
                                                     <option value="">Seleccione un Dia</option>
-                                                    <option value="Lunes">Lunes</option>
-                                                    <option value="Martes">Martes</option>
-                                                    <option value="Miercoles">Miercoles</option>
-                                                    <option value="Jueves">Jueves</option>
-                                                    <option value="Viernes">Viernes</option>
-                                                    <option value="Sabado">Sabado</option>
+                                                    <option value="Lunes" {{ 'Lunes' == $horario->dia ? 'selected' : '' }}>Lunes</option>
+                                                    <option value="Martes" {{ 'Martes' == $horario->dia ? 'selected' : '' }}>Martes</option>
+                                                    <option value="Miercoles" {{ 'Miercoles' == $horario->dia ? 'selected' : '' }}>Miercoles</option>
+                                                    <option value="Jueves" {{ 'Jueves' == $horario->dia ? 'selected' : '' }}>Jueves</option>
+                                                    <option value="Viernes" {{ 'Viernes' == $horario->dia ? 'selected' : '' }}>Viernes</option>
+                                                    <option value="Sabado" {{ 'Sabado' == $horario->dia ? 'selected' : '' }}>Sabado</option>
                                                 </select>
                                             </div>
                                             @error('dia')
@@ -265,7 +266,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-door-open"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" name="aula" placeholder="Ej: A-101" required>
+                                                <input type="text" class="form-control" value="{{ $horario->aula }}" name="aula" placeholder="Ej: A-101" required>
                                             </div>
                                             @error('aula')
                                                 <small style="color: red">{{ $message }}</small>
@@ -279,7 +280,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                 </div>
-                                                <input type="time" class="form-control" name="hora_inicio" required>
+                                                <input type="time" value="{{ $horario->hora_inicio }}" class="form-control" name="hora_inicio" required>
                                             </div>
                                             @error('hora_inicio')
                                                 <small style="color: red">{{ $message }}</small>
@@ -293,7 +294,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                 </div>
-                                                <input type="time" class="form-control" name="hora_fin" required>
+                                                <input type="time" value="{{ $horario->hora_fin }}" class="form-control" name="hora_fin" required>
                                             </div>
                                             @error('hora_fin')
                                                 <small style="color: red">{{ $message }}</small>
@@ -306,7 +307,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <a href="{{ url('/admin/horarios') }}" class="btn btn-secondary"> Cancelar</a>
-                                            <button type="submit" class="btn btn-primary">Registrar</button>
+                                            <button type="submit" class="btn btn-success">Actualizar</button>
                                         </div>
                                     </div>
                             </form>

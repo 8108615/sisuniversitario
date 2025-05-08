@@ -86,11 +86,11 @@
                                                                     @if($asignacionMateria->matriculacion_id == $matriculacione->id)
                                                                      <tr>
                                                                         <td>{{ $contador++ }}</td>
-                                                                        <td>{{ $asignacionMateria->materia->nombre }}</td>
-                                                                        <td>{{ $asignacionMateria->materia->codigo }}</td>
-                                                                        <td>{{ $asignacionMateria->turno->nombre }}</td>
-                                                                        <td>{{ $asignacionMateria->paralelo->nombre }}</td>
-                                                                        <td>{{ $asignacionMateria->materia->nota_final }}</td>
+                                                                        <td>{{ $asignacionMateria->grupo_academico->materia->nombre }}</td>
+                                                                        <td>{{ $asignacionMateria->grupo_academico->materia->codigo }}</td>
+                                                                        <td>{{ $asignacionMateria->grupo_academico->turno->nombre }}</td>
+                                                                        <td>{{ $asignacionMateria->grupo_academico->paralelo->nombre }}</td>
+                                                                        <td>{{ $asignacionMateria->nota_final }}</td>
                                                                         <td>
                                                                             <form action="{{url('/admin/matriculaciones/asignar_materia',$asignacionMateria->id)}}" method="post"
                                                                                 onclick="preguntar1{{$asignacionMateria->id}}(event)" id="miFormulario1{{$asignacionMateria->id}}">
@@ -169,64 +169,27 @@
                                                                     @endforeach
                                                                 </td>
                                                                 <td style="text-align: center">
-                                                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                                                        <a href="{{url('/admin/grupos_academicos/'.$grupoAcademico->id.'/edit')}}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                                                        
-                                                                    </div>
+                                                                    <form action="{{ url('/admin/matriculaciones/asignar_materia/create') }}" method="POST">
+                                                                        @csrf
+                                                                        <input type="hidden" name="matriculacion_id" value="{{ $matriculacione->id }}">
+                                                                        <input type="hidden" name="grupo_academico_id" value="{{ $grupoAcademico->id }}">
+                                                                        <div class="row">
+                                                                            <div class="col-md-2">
+                                                                                <div class="form-group">
+                                                                                    <div style="height: 34px"></div>
+                                                                                    <button type="submit" class="btn btn-primary">Seleccionar</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                    
                                                                 </td>
                                                             </tr>
                                                             @endif
                                                         @endforeach
                                                         </tbody>
                                                     </table>
-                                                    <hr>
-                                                    <form action="{{ url('/admin/matriculaciones/asignar_materia/create') }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="matriculacion_id" value="{{ $matriculacione->id }}">
-                                                        <div class="row">
-                                                            <div class="col-md-5">
-                                                                <label for="">Materias</label>
-                                                                <select name="materia_id" id="" class="form-control" required>
-                                                                    <option value="">Seleccione una Materia</option>
-                                                                    @foreach($materias as $materia)
-                                                                    @if($matriculacione->carrera_id == $materia->carrera_id)
-                                                                        <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
-                                                                    @endif
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label for="">Turnos</label>
-                                                                <select name="turno_id" id="" class="form-control" required>
-                                                                    <option value="">Seleccione un Turno</option>
-                                                                    @foreach($turnos as $turno)
-                                                                        <option value="{{ $turno->id }}">{{ $turno->nombre }}</option> 
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label for="">Paralelos</label>
-                                                                <select name="paralelo_id" id="" class="form-control" required>
-                                                                    <option value="">Seleccione...</option>
-                                                                    @foreach($paralelos as $paralelo)
-                                                                        <option style="text-align: center" value="{{ $paralelo->id }}">{{ $paralelo->nombre }}</option> 
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <div class="form-group">
-                                                                    <div style="height: 34px"></div>
-                                                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </form>
-                                                    
-
-                                                    
-                                                    <br>
-                                                    
+                                                   
                                                 </div>
                                             </div>
                                             </div>

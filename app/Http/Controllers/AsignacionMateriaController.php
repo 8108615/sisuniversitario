@@ -33,26 +33,23 @@ class AsignacionMateriaController extends Controller
 
         $request->validate([
             'matriculacion_id' => 'required',
-            'materia_id' =>'required',
-            'turno_id' =>'required',
-            'paralelo_id' =>'required',
+            'grupo_academico_id' =>'required',
+            
         ]);
 
         $asignacionExistente = AsignacionMateria::where('matriculacion_id', $request->matriculacion_id)
-        ->where('materia_id', $request->materia_id)
+        ->where('grupo_academico_id', $request->grupo_academico_id)
         ->first();
         
         if($asignacionExistente){
             return redirect()->route('admin.matriculaciones.index')
-                ->with('mensaje', 'Ya existe una asignacion de Materia para esta Matriculacion')
+                ->with('mensaje', 'Ya existe una asignacion del Grupo Academico para esta Matriculacion')
                 ->with('icono', 'error');
         }
 
         $asignacionMateria = new AsignacionMateria();
         $asignacionMateria->matriculacion_id = $request->matriculacion_id;
-        $asignacionMateria->materia_id = $request->materia_id;
-        $asignacionMateria->turno_id = $request->turno_id;
-        $asignacionMateria->paralelo_id = $request->paralelo_id;
+        $asignacionMateria->grupo_academico_id = $request->grupo_academico_id;
         $asignacionMateria->estado = 'activo';
         $asignacionMateria->fecha_asignacion = now();
         

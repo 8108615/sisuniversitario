@@ -31,7 +31,7 @@ class MatriculacionController extends Controller
         $materias = Materia::all();
         $turnos = Turno::all();
         $paralelos = Paralelo::all();
-        $asignacionMaterias = AsignacionMateria::with('materia','turno','paralelo')->get();
+        $asignacionMaterias = AsignacionMateria::with('matriculacion','grupo_academico')->get();
         //return response()->json($matriculaciones);
         return view('admin.matriculaciones.index',compact('matriculaciones','materias','turnos','paralelos','asignacionMaterias','grupoAcademicos'));
     }
@@ -94,7 +94,7 @@ class MatriculacionController extends Controller
 
         $configuracion = Configuracion::first();
         $matricula = Matriculacion::with('estudiante', 'gestion', 'nivel', 'periodo', 'carrera')->find($id);
-        $asignacionMaterias = AsignacionMateria::with('materia','turno','paralelo')->where('matriculacion_id',$matricula->id)->get();
+        $asignacionMaterias = AsignacionMateria::with('matriculacion','grupo_academico')->where('matriculacion_id',$matricula->id)->get();
         $barcodePNG = 'data:image/png;base64,' .DNS1D::getBarcodePNG($matricula->estudiante->ci, 'C128', 1,33);
 
 

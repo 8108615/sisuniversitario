@@ -103,11 +103,12 @@
         @foreach ($asignacionMaterias as $datos)
             <tr>
                 <td style="text-align: center">{{ $contador++ }}</td>
-                <td>{{ $datos->materia->nombre }}</td>
-                <td>{{ $datos->materia->codigo }}</td>
-                <td style="text-align: center">{{ $datos->turno->nombre }}</td>
-                <td style="text-align: center">{{ $datos->paralelo->nombre }}</td>
+                <td>{{ $datos->grupo_academico->materia->nombre }}</td>
+                <td>{{ $datos->grupo_academico->materia->codigo }}</td>
+                <td style="text-align: center">{{ $datos->grupo_academico->turno->nombre }}</td>
+                <td style="text-align: center">{{ $datos->grupo_academico->paralelo->nombre }}</td>
             </tr>
+            
             
         @endforeach
     </table>

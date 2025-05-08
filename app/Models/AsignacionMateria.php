@@ -13,15 +13,9 @@ class AsignacionMateria extends Model
         return $this->belongsTo(Matriculacion::class);
     }
 
-    public function materia(){
-        return $this->belongsTo(Materia::class);
+    public function grupo_academico(){
+        return $this->belongsTo(Grupos_academico::class);
     }
 
-    public function turno(){
-        return $this->belongsTo(Turno::class);
-    }
-
-    public function paralelo(){
-        return $this->belongsTo(Paralelo::class);
-    }
+   
 }

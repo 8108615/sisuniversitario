@@ -50,6 +50,11 @@ class RoleController extends Controller
         //
     }
 
+    public function permisos(){
+        //$roles = Role::all();
+        return view('admin.roles.permisos');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

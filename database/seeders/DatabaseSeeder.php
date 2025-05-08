@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Carrera;
+use App\Models\Configuracion;
 use App\Models\Estudiante;
 use App\Models\Gestion;
 use App\Models\Materia;
@@ -31,10 +32,18 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Role::create(['name'=>'ADMINISTRADOR']);
-        Role::create(['name'=>'ADMINISTRATIVO']);
-        Role::create(['name'=>'DOCENTE']);
-        Role::create(['name'=>'ESTUDIANTE']);
+        $this->call([RoleSeeder::class]);
+
+        Configuracion::create([
+
+            'nombre'=>'Universidad Erick',
+            'descripcion' => 'Universidad para Todos',
+            'direccion'=>'Av Cumavi/Barrio San juan Calle 5/Nro223',
+            'telefono'=>'76658536',
+            'email'=>'universidad@gmail.com',
+            'web'=>'https://erick.com',
+            'logo'=>'img/logo.jpg'     
+        ]);
 
         User::create([
             'name'=>'Erick Morales',

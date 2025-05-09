@@ -35,7 +35,7 @@ class DocenteFactory extends Factory
             'usuario_id' => $usuario->id,
             'nombres' =>$nombres,
             'apellidos' =>$apellidos,
-            'ci' =>$this->faker->unique()->numerify('########'),
+            'ci' =>$ci,
             'fecha_nacimiento' =>$this->faker->date('Y-m-d','2000-12-31'),
             'telefono' =>$this->faker->numerify('7#######'),
             'profesion' =>$this->faker->jobTitle,

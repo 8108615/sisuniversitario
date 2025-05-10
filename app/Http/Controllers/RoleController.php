@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -51,8 +52,8 @@ class RoleController extends Controller
     }
 
     public function permisos(){
-        //$roles = Role::all();
-        return view('admin.roles.permisos');
+        $permisos = Permission::all();
+        return view('admin.roles.permisos',compact('permisos'));
     }
 
     /**

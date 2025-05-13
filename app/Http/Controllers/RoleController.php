@@ -51,9 +51,31 @@ class RoleController extends Controller
         //
     }
 
-    public function permisos(){
-        $permisos = Permission::all();
-        return view('admin.roles.permisos',compact('permisos'));
+    public function permisos($id){
+        $rol = Role::find($id);
+        $permisos = Permission::all()->groupBy(function($permiso){
+            if(stripos($permiso->name,'configuracion')!== false){ return 'Configuracion';}
+            if(stripos($permiso->name,'gestiones')!== false){ return 'Gestiones';}
+            if(stripos($permiso->name,'carreras')!== false){ return 'Carreras';}
+            if(stripos($permiso->name,'niveles')!== false){ return 'Niveles';}
+            if(stripos($permiso->name,'turnos')!== false){ return 'Turnos';}
+            if(stripos($permiso->name,'paralelos')!== false){ return 'Paralelos';}
+            if(stripos($permiso->name,'periodos')!== false){ return 'Periodos';}
+            if(stripos($permiso->name,'materias')!== false){ return 'Materias';}
+            if(stripos($permiso->name,'roles')!== false){ return 'Roles';}
+            if(stripos($permiso->name,'administrativos')!== false){ return 'Administrativos';}
+            if(stripos($permiso->name,'docentes')!== false){ return 'Docentes';}
+            if(stripos($permiso->name,'docentesformaciones')!== false){ return 'Docentes Formaciones';}
+            if(stripos($permiso->name,'grupos_academicos')!== false){ return 'Grupos Academicos';}
+            if(stripos($permiso->name,'horarios')!== false){ return 'Horarios';}
+            if(stripos($permiso->name,'estudiantes')!== false){ return 'Estudiantes';}
+            if(stripos($permiso->name,'matriculaciones')!== false){ return 'Matriculaciones';}
+            if(stripos($permiso->name,'asignar_materia')!== false){ return 'Asignar Materias';}
+            
+
+        });
+
+        return view('admin.roles.permisos',compact('permisos','rol'));
     }
 
     /**

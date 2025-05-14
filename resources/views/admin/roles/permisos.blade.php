@@ -16,21 +16,34 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="row">
-                                @foreach ($permisos as $modulo => $grupoPermisos)
-                                    <div class="col-md-3">
-                                        <h3>{{ $modulo }}</h3>
-                                        @foreach ($grupoPermisos as $permiso)
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" name="permisos[]"
-                                            value="{{ $permiso->id }}" {{ $rol->hasPermissionTo($permiso->name) ? 'checked' : '' }}>
-                                            <label for="" class="form-check-label">{{ $permiso->name }}</label>
+                            <form action="{{ url('/admin/roles',$rol->id) }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    @foreach ($permisos as $modulo => $grupoPermisos)
+                                        <div class="col-md-3">
+                                            <h3>{{ $modulo }}</h3>
+                                            @foreach ($grupoPermisos as $permiso)
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" name="permisos[]"
+                                                        value="{{ $permiso->id }}"
+                                                        {{ $rol->hasPermissionTo($permiso->name) ? 'checked' : '' }}>
+                                                    <label for=""
+                                                        class="form-check-label">{{ $permiso->name }}</label>
+                                                </div>
+                                            @endforeach
+                                            <br>
                                         </div>
-                                        @endforeach
-                                        <br>
+                                    @endforeach
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <a href="{{ url('/admin/roles') }}" class="btn btn-danger">Cancelar</a>
+                                        </div>
                                     </div>
-                                @endforeach
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -78,6 +78,15 @@ class RoleController extends Controller
         return view('admin.roles.permisos',compact('permisos','rol'));
     }
 
+    public function update_permisos(Request $request, $id){
+        $rol = Role::find($id);
+        $rol->permissions()->sync($request->input('permisos'));
+
+        return redirect()->route('admin.roles.index')
+            ->with('mensaje', 'Se Modificaron los Permisos de la Manera Correcta')
+            ->with('icono','success');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

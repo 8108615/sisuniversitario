@@ -37,7 +37,7 @@
                                 <td>{{$rol->name}}</td>
                                 <td style="text-align: center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{url('/admin/roles/'.$rol->id.'')}}" class="btn btn-warning btn-sm"><i class="fas fa-check"></i></a>
+                                        <a href="{{url('/admin/roles/'.$rol->id.'')}}" class="btn btn-warning btn-sm"><i class="fas fa-check"></i>Permisos</a>
                                         <a href="{{url('/admin/roles/'.$rol->id.'/edit')}}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                         <form action="{{url('/admin/roles',$rol->id)}}" method="post"
                                               onclick="preguntar{{$rol->id}}(event)" id="miFormulario{{$rol->id}}">

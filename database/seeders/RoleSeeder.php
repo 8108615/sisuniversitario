@@ -84,9 +84,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'admin.roles.create'])->syncRoles($admin);
         Permission::create(['name'=>'admin.roles.store'])->syncRoles($admin);
         Permission::create(['name'=>'admin.roles.permisos'])->syncRoles($admin);
+        Permission::create(['name'=>'admin.roles.update_permisos'])->syncRoles($admin);
         Permission::create(['name'=>'admin.roles.edit'])->syncRoles($admin);
         Permission::create(['name'=>'admin.roles.update'])->syncRoles($admin);
         Permission::create(['name'=>'admin.roles.destroy'])->syncRoles($admin);
+        
 
         //Rutas para administrativos
         Permission::create(['name'=>'admin.administrativos.index'])->syncRoles($admin);

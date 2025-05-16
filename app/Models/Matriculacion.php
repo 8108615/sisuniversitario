@@ -37,4 +37,8 @@ class Matriculacion extends Model
     public function asignacionMaterias(){
         return $this->hasMany(AsignacionMateria::class);
     }
+
+    public function pagos(){
+        return $this->hasMany(Pago::class);
+    }
 }

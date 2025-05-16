@@ -163,4 +163,6 @@ Route::get('/admin/matriculaciones/buscar_estudiante/{id}', [App\Http\Controller
 Route::post('/admin/matriculaciones/asignar_materia/create', [App\Http\Controllers\AsignacionMateriaController::class, 'store'])->name('admin.asignar_materia.store')->middleware('auth','can:admin.asignar_materia.store');
 Route::delete('/admin/matriculaciones/asignar_materia/{id}', [App\Http\Controllers\AsignacionMateriaController::class, 'destroy'])->name('admin.asignar_materia.destroy')->middleware('auth','can:admin.asignar_materia.destroy');
 
-//Rutas para grupos_academicos
+//Rutas para pagos
+Route::get('/admin/pagos', [App\Http\Controllers\PagoController::class, 'index'])->name('admin.pagos.index')->middleware('auth','can:admin.pagos.index');
+Route::get('/admin/pagos/estudiante/{id}', [App\Http\Controllers\PagoController::class, 'ver_pagos'])->name('admin.pagos.ver_pagos')->middleware('auth','can:admin.pagos.ver_pagos');

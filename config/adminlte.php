@@ -417,6 +417,12 @@ return [
             'icon' => 'fas fa-fw fa-clipboard-list',
             'classes' => 'bg-blue text-white',
         ],
+        [
+            'text' => 'Pagos',
+            'url' => 'admin/pagos',
+            'icon' => 'fas fa-fw fa-money-bill-wave',
+            'classes' => 'bg-blue text-white',
+        ],
                 
     ],
 

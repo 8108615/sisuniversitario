@@ -8,7 +8,10 @@ use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Estudiante;
 use App\Models\Gestion;
+use App\Models\Grupos_academico;
+use App\Models\Horario;
 use App\Models\Materia;
+use App\Models\Matriculacion;
 use App\Models\Nivel;
 use App\Models\Paralelo;
 use App\Models\Periodo;
@@ -122,6 +125,51 @@ class DatabaseSeeder extends Seeder
             'estado' => 'activo',
         ]);
         */
+
+        Grupos_academico::create([
+            'docente_id'=>'1',
+            'gestion_id'=>'1',
+            'nivel_id'=>'1',
+            'periodo_id'=>'1',
+            'carrera_id'=>'1',
+            'turno_id'=>'1',
+            'paralelo_id'=>'1',
+            'estado '=>'activo',
+            'fecha_asignacion'=>'2025-05-01',
+            'cupo_maximo '=>'20',
+        ]);
+        Horario::create([
+            'grupo_academico_id' => '1',
+            'dia ' => 'Lunes',
+            'hora_inicio' => '10:00',
+            'hora_fin' => '11:30',
+            'aula' => 'A2',
+            'estado' => 'activo',
+        ]);
+        Horario::create([
+            'grupo_academico_id' => '1',
+            'dia ' => 'Martes',
+            'hora_inicio' => '07:30',
+            'hora_fin' => '09:00',
+            'aula' => 'A2',
+            'estado' => 'activo',
+        ]);
+        Matriculacion::create([
+            'estudiante_id'=>'1',
+            'gestion_id'=>'1',
+            'nivel_id'=>'1',
+            'periodo_id'=>'1',
+            'carrera_id'=>'1',
+            'fecha_matriculacion'=>'2025-05-01',
+        ]);
+        Matriculacion::create([
+            'estudiante_id'=>'1',
+            'gestion_id'=>'1',
+            'nivel_id'=>'1',
+            'periodo_id'=>'2',
+            'carrera_id'=>'1',
+            'fecha_matriculacion'=>'2025-05-01',
+        ]);
 
         $this->call([EstudianteSeeder::class]);
         $this->call([DocenteSeeder::class]);

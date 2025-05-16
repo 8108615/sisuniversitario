@@ -154,6 +154,11 @@ class RoleSeeder extends Seeder
         //Rutas para asignacion de Materias
         Permission::create(['name'=>'admin.asignar_materia.store'])->syncRoles($admin);
         Permission::create(['name'=>'admin.asignar_materia.destroy'])->syncRoles($admin);
+
+        //Rutas para asignacion de Pagos
+        Permission::create(['name'=>'admin.pagos.index'])->syncRoles($admin);
+        Permission::create(['name'=>'admin.pagos.ver_pagos'])->syncRoles($admin);
+        
         
 
         

@@ -18,6 +18,10 @@ class RoleSeeder extends Seeder
         $administrativo = Role::create(['name'=>'ADMINISTRATIVO']);
         $docente = Role::create(['name'=>'DOCENTE']);
         $estudiante = Role::create(['name'=>'ESTUDIANTE']);
+        $cajero = Role::create(['name'=>'CAJERO']);
+
+
+
         // ----- Configiuraciones -----------
         Permission::create(['name'=>'admin.configuracion.index'])->syncRoles($admin);
         Permission::create(['name'=>'admin.configuracion.store'])->syncRoles($admin);
@@ -158,6 +162,12 @@ class RoleSeeder extends Seeder
         //Rutas para asignacion de Pagos
         Permission::create(['name'=>'admin.pagos.index'])->syncRoles($admin);
         Permission::create(['name'=>'admin.pagos.ver_pagos'])->syncRoles($admin);
+        Permission::create(['name'=>'admin.pagos.store'])->syncRoles($admin);
+        Permission::create(['name'=>'admin.pagos.comprobante'])->syncRoles($admin);
+        Permission::create(['name'=>'admin.pagos.destroy'])->syncRoles($admin);
+
+        //Rutas para asignacion de Asistencias
+        Permission::create(['name'=>'admin.asistencias.index'])->syncRoles($admin,$docente,$estudiante);
         
         
 

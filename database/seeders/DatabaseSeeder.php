@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([RoleSeeder::class]);
+        $this->call([EstudianteSeeder::class]);
+        $this->call([DocenteSeeder::class]);
 
         Configuracion::create([
 
@@ -104,43 +106,22 @@ class DatabaseSeeder extends Seeder
             'codigo'=>'INF-FP-1'
         ]);
 
-        /*$usuario = User::create([
-            'name'=>'Estudiante Ejemplo',
-            'email'=>'estudiante@gmail.com',
-            'password'=>Hash::make('9876543'),
-        ])->assignRole('ESTUDIANTE');
-
-        Estudiante::create([
-            'usuario_id' => $usuario->id,
-            'nombres' => 'Carlos',
-            'apellidos' => 'Gomez',
-            'ci' => '9876543',
-            'fecha_nacimiento' => '2005-03-15',
-            'telefono' => '70098765',
-            'ref_celular' => '60012345',
-            'parentesco' => 'Padre',
-            'profesion' => 'Estudiante',
-            'direccion' => 'calle 456, santa cruz',
-            'foto' => 'foto.jpg',
-            'estado' => 'activo',
-        ]);
-        */
-
         Grupos_academico::create([
             'docente_id'=>'1',
             'gestion_id'=>'1',
             'nivel_id'=>'1',
             'periodo_id'=>'1',
             'carrera_id'=>'1',
+            'materia_id'=>'1',
             'turno_id'=>'1',
             'paralelo_id'=>'1',
-            'estado '=>'activo',
+            'estado'=>'activo',
             'fecha_asignacion'=>'2025-05-01',
-            'cupo_maximo '=>'20',
+            'cupo_maximo'=>'20',
         ]);
         Horario::create([
             'grupo_academico_id' => '1',
-            'dia ' => 'Lunes',
+            'dia' => 'Lunes',
             'hora_inicio' => '10:00',
             'hora_fin' => '11:30',
             'aula' => 'A2',
@@ -148,7 +129,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Horario::create([
             'grupo_academico_id' => '1',
-            'dia ' => 'Martes',
+            'dia' => 'Martes',
             'hora_inicio' => '07:30',
             'hora_fin' => '09:00',
             'aula' => 'A2',
@@ -164,15 +145,14 @@ class DatabaseSeeder extends Seeder
         ]);
         Matriculacion::create([
             'estudiante_id'=>'1',
-            'gestion_id'=>'1',
+            'gestion_id'=>'2',
             'nivel_id'=>'1',
             'periodo_id'=>'2',
             'carrera_id'=>'1',
             'fecha_matriculacion'=>'2025-05-01',
         ]);
 
-        $this->call([EstudianteSeeder::class]);
-        $this->call([DocenteSeeder::class]);
+        
 
     }
 }

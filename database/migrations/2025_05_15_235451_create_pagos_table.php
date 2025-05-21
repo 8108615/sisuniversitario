@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('matriculacion_id')->constrained('matriculacions')->onDelete('cascade');
             $table->decimal('monto',10,2);
-            $table->string('montodo_pago');
+            $table->string('metodo_pago');
             $table->text('descripcion');
             $table->date('fecha_pago');
             $table->enum('estado',['pendiente','completado','cancelado','anulado'])->default('cancelado');

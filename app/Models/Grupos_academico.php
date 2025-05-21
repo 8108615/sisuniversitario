@@ -49,4 +49,8 @@ class Grupos_academico extends Model
         return $this->hasMany(AsignacionMateria::class,'grupo_academico_id');
     }
 
+    public function asistencias(){
+        return $this->hasMany(Asistencia::class);
+    }
+
 }

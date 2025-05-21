@@ -308,48 +308,56 @@ return [
         ['header' => 'DATOS DEL SISTEMA'],
 
         [
+            'can' =>'admin.configuraciones.index',
             'text' => 'Configuracion',
             'url' => 'admin/configuraciones',
             'icon' => 'fas fa-fw fa-cogs',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.gestiones.index',
             'text' => 'Gestiones',
             'url' => 'admin/gestiones',
             'icon' => 'fas fa-fw fa-tasks',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.carreras.index',
             'text' => 'Carreras',
             'url' => 'admin/carreras',
             'icon' => 'fas fa-fw fa-graduation-cap',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.niveles.index',
             'text' => 'Niveles',
             'url' => 'admin/niveles',
             'icon' => 'fas fa-fw fa-layer-group',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.turnos.index',
             'text' => 'Turnos',
             'url' => 'admin/turnos',
             'icon' => 'fas fa-fw fa-clock',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.paralelos.index',
             'text' => 'Paralelos',
             'url' => 'admin/paralelos',
             'icon' => 'fas fa-fw fa-clone',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.periodos.index',
             'text' => 'Periodo',
             'url' => 'admin/periodos',
             'icon' => 'fas fa-fw fa-calendar-alt',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.materias.index',
             'text' => 'Materias',
             'url' => 'admin/materias',
             'icon' => 'fas fa-fw fa-book',
@@ -362,6 +370,7 @@ return [
         ['header' => 'DATOS ACADÉMICOS'],
 
         [
+            'can' =>'admin.roles.index',
             'text' => 'Roles',
             'icon' => 'fas fa-fw fa-user-check',
             'classes' => 'bg-blue text-white',
@@ -375,14 +384,15 @@ return [
         ],
 
         [
+            'can' =>'admin.administrativos.index',
             'text' => 'Administrativos',
             'url' => 'admin/administrativos',
             'icon' => 'fas fa-fw fa-users-cog',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.docentes.index',
             'text' => 'Docente',
-            
             'icon' => 'fas fa-fw fa-chalkboard-teacher',
             'classes' => 'bg-blue text-white',
             'submenu' => [
@@ -400,29 +410,42 @@ return [
             ],
         ],
         [
+            'can' =>'admin.horarios.index',
             'text' => 'Horarios',
             'url' => 'admin/horarios',
             'icon' => 'fas fa-fw fa-clock',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.estudiantes.index',
             'text' => 'Estudiante',
             'url' => 'admin/estudiantes',
             'icon' => 'fas fa-fw fa-user-graduate',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.matriculaciones.index',
             'text' => 'Matriculaciones',
             'url' => 'admin/matriculaciones',
             'icon' => 'fas fa-fw fa-clipboard-list',
             'classes' => 'bg-blue text-white',
         ],
         [
+            'can' =>'admin.pagos.index',
             'text' => 'Pagos',
             'url' => 'admin/pagos',
             'icon' => 'fas fa-fw fa-money-bill-wave',
             'classes' => 'bg-blue text-white',
         ],
+        [
+            'can' =>'admin.asistencias.index',
+            'text' => 'Asistencias',
+            'url' => 'admin/asistencias',
+            'icon' => 'fas fa-fw fa-user-check',
+            'classes' => 'bg-blue text-white',
+        ],
+        
+
                 
     ],
 

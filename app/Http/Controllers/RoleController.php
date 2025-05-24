@@ -72,6 +72,7 @@ class RoleController extends Controller
             if(stripos($permiso->name,'matriculaciones')!== false){ return 'Matriculaciones';}
             if(stripos($permiso->name,'asignar_materia')!== false){ return 'Asignar Materias';}
             if(stripos($permiso->name,'pagos')!== false){ return 'Pagos';}
+            if(stripos($permiso->name,'asistencias')!== false){ return 'Asistencias';}
             
 
         });

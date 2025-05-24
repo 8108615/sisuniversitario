@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AsignacionMateria;
 use App\Models\Asistencia;
+use App\Models\AsistenciaEstudiante;
 use App\Models\Grupos_academico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,9 +35,13 @@ class AsistenciaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $asistencias = Asistencia::with('grupoAcademico','detalleAsistencias.estudiante')->where('grupo_academico_id', $id)->get();
+        $asignaciones = AsignacionMateria::with('matriculacion.estudiante')
+        ->where('grupo_academico_id',$id)
+        ->get();
+        return view('admin.asistencias.create',compact('asistencias','asignaciones','id'));
     }
 
     /**
@@ -43,7 +49,31 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$datos = request()->all();
+        //return response()->json($datos);
+        $request->validate([
+            'grupo_academico_id' => 'required',
+            'fecha' => 'required|date',
+            'criterio' => 'required',
+        ]);
+        $asistencia = new Asistencia();
+        $asistencia->grupo_academico_id = $request->grupo_academico_id;
+        $asistencia->fecha = $request->fecha;
+        $asistencia->observacion = $request->observacion;
+        $asistencia->save();
+
+        $criterio = $request->criterio;
+        foreach($criterio as $estudianteId => $estado){
+            AsistenciaEstudiante::create([
+                'asistencia_id' => $asistencia->id,
+                'estudiante_id' => $estudianteId,
+                'estado' => $estado,
+            ]);
+        }
+
+        return redirect()->back()
+                ->with('mensaje',' Se Registro la Asistencia de Manera Correcta')
+                ->with('icono','success');
     }
 
     /**

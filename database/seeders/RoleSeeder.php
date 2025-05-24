@@ -168,6 +168,8 @@ class RoleSeeder extends Seeder
 
         //Rutas para asignacion de Asistencias
         Permission::create(['name'=>'admin.asistencias.index'])->syncRoles($admin,$docente,$estudiante);
+        Permission::create(['name'=>'admin.asistencias.create'])->syncRoles($docente);
+        Permission::create(['name'=>'admin.asistencias.store'])->syncRoles($docente);
         
         
 

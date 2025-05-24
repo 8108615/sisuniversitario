@@ -9,6 +9,14 @@ class AsistenciaEstudiante extends Model
 {
     use HasFactory;
 
+    protected $table = 'asistencia_estudiantes';
+
+    protected $fillable = [
+        'asistencia_id',
+        'estudiante_id',
+        'estado',
+    ];
+
     public function asistencia()
     {
         return $this->belongsTo(Asistencia::class);

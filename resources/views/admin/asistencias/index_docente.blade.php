@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Grupos Registrados</h3>
@@ -45,7 +45,7 @@
                                 <td>{{ $grupo->paralelo->nombre }}</td>
                                 <td>{{ $grupo->cupo_maximo }}</td>
                                 <td>
-                                    <a href="{{ url('/admin/asistencias/create') }}" class="btn btn-success"><i class="fas fa-list"></i> Tomar Asistencia</a>
+                                    <a href="{{ url('/admin/asistencias/create/grupo_academico/'.$grupo->id) }}" class="btn btn-success"><i class="fas fa-list"></i> Tomar Asistencia</a>
                                 </td>
                             </tr>
                             
@@ -56,6 +56,61 @@
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
+        </div>
+
+        <div class="col-md-12">
+            <div class="card card-outline card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Horario Semanal</h3>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead class="table-primary">
+                            <tr>
+                                @php
+                                    $dias = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
+                                @endphp
+                                @foreach ($dias as $dia )
+                                    <th>{{ $dia }}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach ($dias as $dia )
+                                    <td>
+                                        @php
+                                            $horariosDia = collect();
+
+                                            foreach ($grupos as $grupo) {
+                                                foreach ($grupo->horarios as $horario) {
+                                                    if (Str::lower($horario->dia) === Str::lower($dia)) {
+                                                        $horario->materia = $grupo->materia->nombre;
+                                                        $horario->paralelo = $grupo->paralelo->nombre;
+                                                        $horariosDia->push($horario);
+                                                    }
+                                                }
+                                            }
+                                            $horariosDia = $horariosDia->sortBy('hora_inicio');
+                                        @endphp
+
+                                        @if ($horariosDia->count() > 0)
+                                            @foreach ($horariosDia as $item)
+                                                <div class="mb-2 p-1 bg-info btn-group-sm text-white rounded">
+                                                    <small>{{ $item->materia }} ({{ $item->paralelo }})</small><br>
+                                                    <small>{{ $item->hora_inicio }} - ({{ $item->hora_fin }})</small>
+                                                </div>
+                                            @endforeach
+                                            @else
+                                            <span>-</span>
+                                        @endif
+                                    </td>
+                                @endforeach
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @stop

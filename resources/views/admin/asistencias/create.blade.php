@@ -122,12 +122,41 @@
                                     <td>{{ $asistencia->observacion }}</td>
                                     <td>
                                         <!-- Button trigger modal -->
-                                        <center>
+                                        <div class="d-flex justify-content-center">
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                                 data-target="#modal-asistencia{{ $asistencia->id }}">
                                                 <i class="fas fa-list"></i> Ver Asistencia
                                             </button>
-                                        </center>
+                                            <form
+                                                action="{{ url('/admin/asistencias', $asistencia->id) }}"
+                                                method="post" onclick="preguntar1{{ $asistencia->id }}(event)"
+                                                id="miFormulario1{{ $asistencia->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fas fa-trash"></i> Eliminar Asistencia</button>
+                                            </form>
+                                            <script>
+                                                function preguntar1{{ $asistencia->id }}(event) {
+                                                    event.preventDefault();
+                                                    Swal.fire({
+                                                        title: '¿Desea eliminar esta registro?',
+                                                        text: '',
+                                                        icon: 'question',
+                                                        showDenyButton: true,
+                                                        confirmButtonText: 'Eliminar',
+                                                        confirmButtonColor: '#a5161d',
+                                                        denyButtonColor: '#270a0a',
+                                                        denyButtonText: 'Cancelar',
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            var form = $('#miFormulario1{{ $asistencia->id }}');
+                                                            form.submit();
+                                                        }
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-asistencia{{ $asistencia->id }}" tabindex="-1"
@@ -181,12 +210,14 @@
                                                                             </td>
                                                                             <td style="text-align: center">
                                                                                 @if ($detalle->estado == 'presente')
-                                                                                    <span class="badge badge-success">Presente</span>
+                                                                                    <span
+                                                                                        class="badge badge-success">Presente</span>
                                                                                 @elseif($detalle->estado == 'licencia')
-                                                                                    <span class="badge badge-warning">Licencia</span>
+                                                                                    <span
+                                                                                        class="badge badge-warning">Licencia</span>
                                                                                 @else
-                                                                                    <span class="badge badge-danger">Falta</span>
-                                                                                    
+                                                                                    <span
+                                                                                        class="badge badge-danger">Falta</span>
                                                                                 @endif
                                                                             </td>
                                                                         </tr>

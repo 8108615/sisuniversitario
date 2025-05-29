@@ -11,92 +11,6 @@
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Asistencias registrados</h3>
-
-                    <div class="card-tools">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Tomar Asistencia
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: #17a2b8">
-                                        <h5 class="modal-title" id="exampleModalLabel">Estudiantes del Grupo Academico</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ url('/admin/asistencias/create') }}" method="POST">
-                                            @csrf
-                                            <input type="text" name="grupo_academico_id" value="{{ $id }}"
-                                                hidden>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="">Fecha de la Asistencia</label>
-                                                        <input type="date" name="fecha" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="">Observacion(opcional)</label>
-                                                        <input type="text" name="observacion" class="form-control"
-                                                            placeholder="Observacion">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label for="">Estudiantes</label>
-                                                    <table
-                                                        class="table table-bordered table-condensed table-hover table-striped table-sm">
-                                                        <tr>
-                                                            <th style="text-align: center">Nro</th>
-                                                            <th style="text-align: center">Nombre</th>
-                                                            <th style="text-align: center">Apellidos</th>
-                                                            <th style="text-align: center">Cedula</th>
-                                                            <th style="text-align: center">Asistencia</th>
-                                                        </tr>
-                                                        @foreach ($asignaciones as $asignacion)
-                                                            <tr>
-                                                                <td style="text-align: center">{{ $loop->iteration }}</td>
-                                                                <td>{{ $asignacion->matriculacion->estudiante->nombres }}
-                                                                </td>
-                                                                <td>{{ $asignacion->matriculacion->estudiante->apellidos }}
-                                                                </td>
-                                                                <td>{{ $asignacion->matriculacion->estudiante->ci }}</td>
-                                                                <td style="text-align: center">
-                                                                    <input type="radio"
-                                                                        name="criterio[{{ $asignacion->matriculacion->estudiante->id }}]"
-                                                                        value="presente" required> Presente
-                                                                    <input type="radio"
-                                                                        name="criterio[{{ $asignacion->matriculacion->estudiante->id }}]"
-                                                                        value="licencia" required> Licencia
-                                                                    <input type="radio"
-                                                                        name="criterio[{{ $asignacion->matriculacion->estudiante->id }}]"
-                                                                        value="falta" required> Falta
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </table>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <hr>
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Cancelar</button>
-                                                    <button type="submit" class="btn btn-primary">Regitrar</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -127,35 +41,6 @@
                                                 data-target="#modal-asistencia{{ $asistencia->id }}">
                                                 <i class="fas fa-list"></i> Ver Asistencia
                                             </button>
-                                            <form
-                                                action="{{ url('/admin/asistencias', $asistencia->id) }}"
-                                                method="post" onclick="preguntar1{{ $asistencia->id }}(event)"
-                                                id="miFormulario1{{ $asistencia->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="fas fa-trash"></i> Eliminar Asistencia</button>
-                                            </form>
-                                            <script>
-                                                function preguntar1{{ $asistencia->id }}(event) {
-                                                    event.preventDefault();
-                                                    Swal.fire({
-                                                        title: '¿Desea eliminar esta registro?',
-                                                        text: '',
-                                                        icon: 'question',
-                                                        showDenyButton: true,
-                                                        confirmButtonText: 'Eliminar',
-                                                        confirmButtonColor: '#a5161d',
-                                                        denyButtonColor: '#270a0a',
-                                                        denyButtonText: 'Cancelar',
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            var form = $('#miFormulario1{{ $asistencia->id }}');
-                                                            form.submit();
-                                                        }
-                                                    });
-                                                }
-                                            </script>
                                         </div>
 
                                         <!-- Modal -->

@@ -44,7 +44,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function administrativos()
+    public function administrativo()
     {
         return $this->hasOne(Administrativo::class);
     }
@@ -54,8 +54,8 @@ class User extends Authenticatable
         return $this->hasOne(Docente::class,'usuario_id');
     }
 
-    public function estudiantes()
+    public function estudiante()
     {
-        return $this->hasOne(Estudiante::class);
+        return $this->hasOne(Estudiante::class,'usuario_id');
     }
 }

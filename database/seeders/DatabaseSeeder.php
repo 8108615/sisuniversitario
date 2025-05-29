@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\AsignacionMateria;
+use App\Models\Asistencia;
+use App\Models\AsistenciaEstudiante;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Estudiante;
@@ -107,75 +109,44 @@ class DatabaseSeeder extends Seeder
             'codigo'=>'INF-FP-1'
         ]);
 
-        Grupos_academico::create([
-            'docente_id'=>'1',
-            'gestion_id'=>'1',
-            'nivel_id'=>'1',
-            'periodo_id'=>'1',
-            'carrera_id'=>'1',
-            'materia_id'=>'1',
-            'turno_id'=>'1',
-            'paralelo_id'=>'1',
-            'estado'=>'activo',
-            'fecha_asignacion'=>'2025-05-01',
-            'cupo_maximo'=>'20',
-        ]);
-        Horario::create([
-            'grupo_academico_id' => '1',
-            'dia' => 'Lunes',
-            'hora_inicio' => '10:00',
-            'hora_fin' => '11:30',
-            'aula' => 'A2',
-            'estado' => 'activo',
-        ]);
-        Horario::create([
-            'grupo_academico_id' => '1',
-            'dia' => 'Martes',
-            'hora_inicio' => '07:30',
-            'hora_fin' => '09:00',
-            'aula' => 'A2',
-            'estado' => 'activo',
-        ]);
-        Matriculacion::create([
-            'estudiante_id'=>'1',
-            'gestion_id'=>'1',
-            'nivel_id'=>'1',
-            'periodo_id'=>'1',
-            'carrera_id'=>'1',
-            'fecha_matriculacion'=>'2025-05-01',
-        ]);
-        Matriculacion::create([
-            'estudiante_id'=>'1',
-            'gestion_id'=>'2',
-            'nivel_id'=>'1',
-            'periodo_id'=>'2',
-            'carrera_id'=>'1',
-            'fecha_matriculacion'=>'2025-05-01',
-        ]);
-        Matriculacion::create([
-            'estudiante_id'=>'2',
-            'gestion_id'=>'1',
-            'nivel_id'=>'1',
-            'periodo_id'=>'1',
-            'carrera_id'=>'1',
-            'fecha_matriculacion'=>'2025-05-01',
-        ]);
-        AsignacionMateria::create([
-            'grupo_academico_id'=>'1',
-            'matriculacion_id'=>'1',
-            'estado'=>'activo',
-            'fecha_asignacion'=>'2025-05-23',
-        ]);
-        AsignacionMateria::create([
-            'grupo_academico_id'=>'1',
-            'matriculacion_id'=>'3',
-            'estado'=>'activo',
-            'fecha_asignacion'=>'2025-05-23',
-        ]);
+        Grupos_academico::create(['docente_id'=>'1','gestion_id'=>'1','nivel_id'=>'1','periodo_id'=>'1','carrera_id'=>'1','materia_id'=>'1',
+        'turno_id'=>'1','paralelo_id'=>'1','estado'=>'activo','fecha_asignacion'=>'2025-02-01','cupo_maximo'=>'20']);
+        Grupos_academico::create(['docente_id'=>'2','gestion_id'=>'1','nivel_id'=>'1','periodo_id'=>'1','carrera_id'=>'1','materia_id'=>'2',
+        'turno_id'=>'1','paralelo_id'=>'1','estado'=>'activo','fecha_asignacion'=>'2025-02-01','cupo_maximo'=>'25']);
+        Grupos_academico::create(['docente_id'=>'3','gestion_id'=>'1','nivel_id'=>'1','periodo_id'=>'1','carrera_id'=>'1','materia_id'=>'3',
+        'turno_id'=>'1','paralelo_id'=>'1','estado'=>'activo','fecha_asignacion'=>'2025-02-01','cupo_maximo'=>'30']);
         
+        Horario::create(['grupo_academico_id' => '1','dia' => 'Lunes','hora_inicio' => '07:30','hora_fin' => '09:00','aula' => 'A2','estado' => 'activo']);        
+        Horario::create(['grupo_academico_id' => '1','dia' => 'Martes','hora_inicio' => '09:00','hora_fin' => '10:30','aula' => 'A2','estado' => 'activo']);
+        Horario::create(['grupo_academico_id' => '2','dia' => 'Miercoles','hora_inicio' => '10:00','hora_fin' => '11:30','aula' => 'A2','estado' => 'activo']);            
+        Horario::create(['grupo_academico_id' => '2','dia' => 'Jueves','hora_inicio' => '07:30','hora_fin' => '09:00','aula' => 'A2','estado' => 'activo']);
+            
+        Matriculacion::create(['estudiante_id'=>'1','gestion_id'=>'1','nivel_id'=>'1','periodo_id'=>'1','carrera_id'=>'1','fecha_matriculacion'=>'2025-04-01']);
+        Matriculacion::create(['estudiante_id'=>'2','gestion_id'=>'1','nivel_id'=>'1','periodo_id'=>'1','carrera_id'=>'1','fecha_matriculacion'=>'2025-04-01']);
+        Matriculacion::create(['estudiante_id'=>'3','gestion_id'=>'1','nivel_id'=>'1','periodo_id'=>'1','carrera_id'=>'1','fecha_matriculacion'=>'2025-04-01']);
+        Matriculacion::create(['estudiante_id'=>'4','gestion_id'=>'1','nivel_id'=>'1','periodo_id'=>'1','carrera_id'=>'1','fecha_matriculacion'=>'2025-04-01']);
+        Matriculacion::create(['estudiante_id'=>'5','gestion_id'=>'1','nivel_id'=>'1','periodo_id'=>'1','carrera_id'=>'1','fecha_matriculacion'=>'2025-04-01']);
+
+        AsignacionMateria::create(['grupo_academico_id'=>'1','matriculacion_id'=>'1','estado'=>'activo','fecha_asignacion'=>'2025-04-11']);
+        AsignacionMateria::create(['grupo_academico_id'=>'1','matriculacion_id'=>'2','estado'=>'activo','fecha_asignacion'=>'2025-04-11']);
+        AsignacionMateria::create(['grupo_academico_id'=>'1','matriculacion_id'=>'3','estado'=>'activo','fecha_asignacion'=>'2025-04-11']);
+        AsignacionMateria::create(['grupo_academico_id'=>'1','matriculacion_id'=>'4','estado'=>'activo','fecha_asignacion'=>'2025-04-11']);
+        AsignacionMateria::create(['grupo_academico_id'=>'1','matriculacion_id'=>'5','estado'=>'activo','fecha_asignacion'=>'2025-04-11']);
         
 
+        Asistencia::create(['grupo_academico_id'=>'1','fecha'=>'2025-04-11']);
+        Asistencia::create(['grupo_academico_id'=>'1','fecha'=>'2025-04-12']);
         
 
+        AsistenciaEstudiante::create(['asistencia_id'=>'1','estudiante_id'=>'1','estado'=>'presente',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'1','estudiante_id'=>'2','estado'=>'presente',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'1','estudiante_id'=>'3','estado'=>'presente',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'1','estudiante_id'=>'4','estado'=>'presente',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'1','estudiante_id'=>'5','estado'=>'presente',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'2','estudiante_id'=>'1','estado'=>'falta',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'2','estudiante_id'=>'2','estado'=>'presente',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'2','estudiante_id'=>'3','estado'=>'presente',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'2','estudiante_id'=>'4','estado'=>'presente',]);
+        AsistenciaEstudiante::create(['asistencia_id'=>'2','estudiante_id'=>'5','estado'=>'presente',]);
     }
 }

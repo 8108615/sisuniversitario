@@ -171,6 +171,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'admin.asistencias.create'])->syncRoles($docente);
         Permission::create(['name'=>'admin.asistencias.store'])->syncRoles($docente);
         Permission::create(['name'=>'admin.asistencias.destroy'])->syncRoles($docente);
+        Permission::create(['name'=>'admin.asistencias.show_admin'])->syncRoles($admin);
+        Permission::create(['name'=>'admin.asistencias.show_estudiante'])->syncRoles($estudiante);
+
 
         
 

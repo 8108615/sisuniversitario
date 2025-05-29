@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1><b>Listado de Asistencias </b></h1>
+    <h1><b>Listado General de Asistencias </b></h1>
     <hr>
 @stop
 
@@ -10,12 +10,7 @@
         <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Asistencias Registradas</h3>
-
-                    <div class="card-tools">
-                        <a href="{{url('/admin/estudiantes/create')}}" class="btn btn-primary"> Crear nuevo</a>
-                    </div>
-                    <!-- /.card-tools -->
+                    <h3 class="card-title">Listado de Asistencias por Grupo Academico Registrados</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -23,13 +18,15 @@
                         <thead>
                         <tr>
                             <th style="text-align: center">Nro</th>
-                            <th style="text-align: center">Rol</th>
-                            <th style="text-align: center">Nombres</th>
-                            <th style="text-align: center">Apellidos</th>
-                            <th style="text-align: center">Cedula</th>
-                            <th style="text-align: center">Telefono</th>
-                            <th style="text-align: center">Correo</th>
-                            <th style="text-align: center">Foto</th>
+                            <th style="text-align: center">Docente</th>
+                            <th style="text-align: center">Gestion</th>
+                            <th style="text-align: center">Nivel</th>
+                            <th style="text-align: center">Periodo</th>
+                            <th style="text-align: center">Carrera</th>
+                            <th style="text-align: center">Materia</th>
+                            <th style="text-align: center">Turno</th>
+                            <th style="text-align: center">Paralelo</th>
+                            <th style="text-align: center">Cupo Maximo</th>
                             <th style="text-align: center">Acción</th>
                         </tr>
                         </thead>
@@ -37,7 +34,25 @@
                         @php
                             $contador = 1;
                         @endphp
-                        
+                        @foreach ($grupos as $grupo)
+                         <tr>
+                            <td style="text-align: center">{{ $contador++ }}</td>
+                            <td>{{ $grupo->docente->apellidos." ".$grupo->docente->nombres }}</td>
+                            <td>{{ $grupo->gestion->nombre }}</td>
+                            <td>{{ $grupo->nivel->nombre }}</td>
+                            <td>{{ $grupo->periodo->nombre }}</td>
+                            <td>{{ $grupo->carrera->nombre }}</td>
+                            <td>{{ $grupo->materia->nombre }}</td>
+                            <td>{{ $grupo->turno->nombre }}</td>
+                            <td>{{ $grupo->paralelo->nombre }}</td>
+                            <td>{{ $grupo->cupo_maximo }}</td>
+                            <td>
+                                <a href="{{ url('/admin/asistencias/grupo/'.$grupo->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i> Ver Asistencia</a>
+                            </td>
+                         </tr>
+
+                        @endforeach
+
                         </tbody>
                     </table>
                 </div>

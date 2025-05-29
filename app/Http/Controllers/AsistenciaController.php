@@ -18,7 +18,8 @@ class AsistenciaController extends Controller
     {
         $rol = Auth::user()->roles->pluck('name')->implode(', ');
         if( $rol === "ADMINISTRADOR"){
-            return view('admin.asistencias.index_administrador');
+            $grupos = Grupos_academico::all();
+            return view('admin.asistencias.index_administrador',compact('grupos'));
         }
         if( $rol === "DOCENTE"){
             $docente = Auth::user()->docente;
@@ -27,9 +28,19 @@ class AsistenciaController extends Controller
         }
 
         if( $rol === "ESTUDIANTE"){
-            return view('admin.asistencias.index_estudiante');
+            $estudiante = Auth::user()->estudiante;
+            $matriculas = $estudiante->matriculaciones()->with(['asignacionMaterias.grupo_academico.materia', 
+            'asignacionMaterias.grupo_academico.docente.usuario'])->get();
+            return view('admin.asistencias.index_estudiante', compact('estudiante','matriculas'));
         }
         
+    }
+
+    public function show_estudiante($id)
+    {
+        $asistencias = AsistenciaEstudiante::with(['asistencia.grupoAcademico.materia','estudiante','asistencia.grupoAcademico.docente.usuario'])
+        ->where('estudiante_id', $id)->get();
+        return view('admin.asistencias.show_estudiante', compact('asistencias', 'id'));
     }
 
     /**
@@ -79,6 +90,14 @@ class AsistenciaController extends Controller
     /**
      * Display the specified resource.
      */
+    public function show_admin($id)
+    {
+        $asistencias = Asistencia::with('grupoAcademico','detalleAsistencias.estudiante')->where('grupo_academico_id', $id)->get();
+        $asignaciones = AsignacionMateria::with('matriculacion.estudiante')
+            ->where('grupo_academico_id', $id)
+            ->get();
+        return view('admin.asistencias.show_admin', compact('asistencias', 'asignaciones', 'id'));
+    }
     public function show(Asistencia $asistencia)
     {
         //

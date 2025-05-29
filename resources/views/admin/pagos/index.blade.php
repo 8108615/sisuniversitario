@@ -46,7 +46,7 @@
                                 </td>
                                 <td style="text-align: center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{url('/admin/pagos/estudiante/'.$estudiante->id)}}" class="btn btn-info btn-sm"><i class="fas fa-money-bill"></i>Ver Pagos</a>
+                                        <a href="{{url('/admin/pagos/estudiante/'.$estudiante->id)}}" class="btn btn-info btn-sm"><i class="fas fa-money-bill"></i>  Ver Pagos</a>
                                         
                                     </div>
                                 </td>

@@ -174,15 +174,13 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'admin.asistencias.show_admin'])->syncRoles($admin);
         Permission::create(['name'=>'admin.asistencias.show_estudiante'])->syncRoles($estudiante);
 
-
-        
-
-
-
-
-
-
-
+        //Rutas para calificaciones
+        Permission::create(['name'=>'admin.calificaciones.index'])->syncRoles($admin,$docente,$estudiante);
+        Permission::create(['name'=>'admin.calificaciones.create'])->syncRoles($docente);
+        Permission::create(['name'=>'admin.calificaciones.store'])->syncRoles($docente);
+        Permission::create(['name'=>'admin.calificaciones.destroy'])->syncRoles($docente);
+        Permission::create(['name'=>'admin.calificaciones.show_admin'])->syncRoles($admin);
+        Permission::create(['name'=>'admin.calificaciones.show_estudiante'])->syncRoles($estudiante);
 
 
 

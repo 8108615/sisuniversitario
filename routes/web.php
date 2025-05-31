@@ -177,3 +177,6 @@ Route::get('/admin/asistencias/detalle_asistencia/estudiante/{id}', [App\Http\Co
 Route::get('/admin/asistencias/grupo/{id}', [App\Http\Controllers\AsistenciaController::class, 'show_admin'])->name('admin.asistencias.show_admin')->middleware('auth','can:admin.asistencias.show_admin');
 Route::post('/admin/asistencias/create/', [App\Http\Controllers\AsistenciaController::class, 'store'])->name('admin.asistencias.store')->middleware('auth','can:admin.asistencias.store');
 Route::delete('/admin/asistencias/{id}', [App\Http\Controllers\AsistenciaController::class, 'destroy'])->name('admin.asistencias.destroy')->middleware('auth','can:admin.asistencias.destroy');
+
+//Rutas para Calificaciones
+Route::get('/admin/calificaciones', [App\Http\Controllers\CalificacionController::class, 'index'])->name('admin.calificaciones.index')->middleware('auth','can:admin.calificaciones.index');

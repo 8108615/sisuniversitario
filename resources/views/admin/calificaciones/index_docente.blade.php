@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1><b>Listado de Grupos Academicos Asignados para Asistencias </b></h1>
+    <h1><b>Listado de Grupos Academicos Asignados para Calificaciones</b></h1>
     <hr>
 @stop
 

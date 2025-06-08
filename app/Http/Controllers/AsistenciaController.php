@@ -36,10 +36,13 @@ class AsistenciaController extends Controller
         
     }
 
-    public function show_estudiante($id)
+    public function show_estudiante($id,$grupoAcademicoId)
     {
         $asistencias = AsistenciaEstudiante::with(['asistencia.grupoAcademico.materia','estudiante','asistencia.grupoAcademico.docente.usuario'])
-        ->where('estudiante_id', $id)->get();
+        ->where('estudiante_id', $id)
+        ->whereHas('asistencia', function($query) use($grupoAcademicoId){
+            $query->where('grupo_academico_id', $grupoAcademicoId);
+        })->get();
         return view('admin.asistencias.show_estudiante', compact('asistencias', 'id'));
     }
 
@@ -48,11 +51,12 @@ class AsistenciaController extends Controller
      */
     public function create($id)
     {
+        $grupo = Grupos_academico::find($id);
         $asistencias = Asistencia::with('grupoAcademico','detalleAsistencias.estudiante')->where('grupo_academico_id', $id)->get();
         $asignaciones = AsignacionMateria::with('matriculacion.estudiante')
         ->where('grupo_academico_id',$id)
         ->get();
-        return view('admin.asistencias.create',compact('asistencias','asignaciones','id'));
+        return view('admin.asistencias.create',compact('asistencias','asignaciones','id','grupo'));
     }
 
     /**
@@ -83,7 +87,7 @@ class AsistenciaController extends Controller
         }
 
         return redirect()->back()
-                ->with('mensaje',' Se Registro la Asistencia de Manera Correcta')
+                ->with('mensaje',' Se Registro la Asistencia de la Manera Correcta')
                 ->with('icono','success');
     }
 

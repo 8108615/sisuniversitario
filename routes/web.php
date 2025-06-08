@@ -173,10 +173,15 @@ Route::delete('/admin/pagos/{id}', [App\Http\Controllers\PagoController::class, 
 //Rutas para Asistencias
 Route::get('/admin/asistencias', [App\Http\Controllers\AsistenciaController::class, 'index'])->name('admin.asistencias.index')->middleware('auth','can:admin.asistencias.index');
 Route::get('/admin/asistencias/create/grupo_academico/{id}', [App\Http\Controllers\AsistenciaController::class, 'create'])->name('admin.asistencias.create')->middleware('auth','can:admin.asistencias.create');
-Route::get('/admin/asistencias/detalle_asistencia/estudiante/{id}', [App\Http\Controllers\AsistenciaController::class, 'show_estudiante'])->name('admin.asistencias.show_estudiante')->middleware('auth','can:admin.asistencias.show_estudiante');
+Route::get('/admin/asistencias/detalle_asistencia/estudiante/{id}/grupo_academico/{grupoAcademicoId}', [App\Http\Controllers\AsistenciaController::class, 'show_estudiante'])->name('admin.asistencias.show_estudiante')->middleware('auth','can:admin.asistencias.show_estudiante');
 Route::get('/admin/asistencias/grupo/{id}', [App\Http\Controllers\AsistenciaController::class, 'show_admin'])->name('admin.asistencias.show_admin')->middleware('auth','can:admin.asistencias.show_admin');
 Route::post('/admin/asistencias/create/', [App\Http\Controllers\AsistenciaController::class, 'store'])->name('admin.asistencias.store')->middleware('auth','can:admin.asistencias.store');
 Route::delete('/admin/asistencias/{id}', [App\Http\Controllers\AsistenciaController::class, 'destroy'])->name('admin.asistencias.destroy')->middleware('auth','can:admin.asistencias.destroy');
 
 //Rutas para Calificaciones
 Route::get('/admin/calificaciones', [App\Http\Controllers\CalificacionController::class, 'index'])->name('admin.calificaciones.index')->middleware('auth','can:admin.calificaciones.index');
+Route::get('/admin/calificaciones/create/grupo_academico/{id}', [App\Http\Controllers\CalificacionController::class, 'create'])->name('admin.calificaciones.create')->middleware('auth','can:admin.calificaciones.create');
+Route::get('/admin/calificaciones/detalle_calificacion/estudiante/{id}/grupo_academico/{grupoAcademicoId}', [App\Http\Controllers\CalificacionController::class, 'show_estudiante'])->name('admin.calificaciones.show_estudiante')->middleware('auth','can:admin.calificaciones.show_estudiante');
+Route::get('/admin/calificaciones/grupo/{id}', [App\Http\Controllers\CalificacionController::class, 'show_admin'])->name('admin.calificaciones.show_admin')->middleware('auth','can:admin.calificaciones.show_admin');
+Route::post('/admin/calificaciones/create/', [App\Http\Controllers\CalificacionController::class, 'store'])->name('admin.calificaciones.store')->middleware('auth','can:admin.calificaciones.store');
+Route::delete('/admin/calificaciones/{id}', [App\Http\Controllers\CalificacionController::class, 'destroy'])->name('admin.calificaciones.destroy')->middleware('auth','can:admin.calificaciones.destroy');

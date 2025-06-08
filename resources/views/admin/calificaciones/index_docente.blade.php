@@ -45,7 +45,8 @@
                                 <td>{{ $grupo->paralelo->nombre }}</td>
                                 <td>{{ $grupo->cupo_maximo }}</td>
                                 <td>
-                                    <a href="{{ url('/admin/asistencias/create/grupo_academico/'.$grupo->id) }}" class="btn btn-success"><i class="fas fa-list"></i> Tomar Asistencia</a>
+                                    <a href="{{ url('/admin/calificaciones/create/grupo_academico/'.$grupo->id) }}" class="btn btn-info">
+                                        <i class="fas fa-list"></i> Ver Calificaciones</a>
                                 </td>
                             </tr>
                             

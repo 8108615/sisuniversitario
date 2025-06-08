@@ -51,7 +51,7 @@
                                                 <td>{{ $asignacion->grupo_academico->docente->apellidos .' '.$asignacion->grupo_academico->docente->nombres }}</td>
                                                 <td>{{ $asignacion->grupo_academico->materia->nombre }}</td>
                                                 <td>
-                                                    <a href="{{ url('/admin/asistencias/detalle_asistencia/estudiante/'.$estudiante->id) }}" class="btn btn-info"><i class="fas fa-list"></i> Ver Asistencias</a>
+                                                    <a href="{{ url('/admin/asistencias/detalle_asistencia/estudiante/'.$estudiante->id.'/grupo_academico/'.$asignacion->grupo_academico->id) }}" class="btn btn-info"><i class="fas fa-list"></i> Ver Asistencias</a>
                                                 </td>
                                             </tr>
                                         @endforeach

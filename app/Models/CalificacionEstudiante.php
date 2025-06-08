@@ -9,6 +9,13 @@ class CalificacionEstudiante extends Model
 {
     use HasFactory;
 
+    protected $table = 'calificacion_estudiantes';
+    protected $fillable = [
+        'calificacion_id',
+        'estudiante_id',
+        'nota',
+    ];
+
     public function calificacion()
     {
         return $this->belongsTo(Calificacion::class);

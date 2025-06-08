@@ -1,27 +1,100 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1><b>Listado de Asistencia del Grupo Academico </b></h1>
+    <h3><b>Listado de Calificaciones del Grupo Academico : <br>
+        </b></h3>
+
+    <h4>
+        Calificaciones Registrados de
+        Gestion: {{ $grupo->gestion->nombre }} - Nivel: {{ $grupo->nivel->nombre }} - Periodo: {{ $grupo->periodo->nombre }}
+        -
+        Carrera : {{ $grupo->carrera->nombre }} - Materia: {{ $grupo->materia->nombre }} - Turno:
+        {{ $grupo->turno->nombre }} -
+        Paralelo: {{ $grupo->paralelo->nombre }}
+    </h4>
     <hr>
 @stop
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+
+        <div class="col-md-6">
+            <div class="card card-outline card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Estudiante del Grupo Academico
+                    </h3>
+
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr style="background-color: #b6ccf0;text-align:center">
+                                <th>Nro</th>
+                                <th>Estudiante</th>
+                                <th>C.I.</th>
+                                @foreach ($calificaciones as $calificacion )
+                                    <th>{{ $calificacion->tipo }}<br><small>{{ $calificacion->fecha }}</small></th>
+                                @endforeach
+                                <th>Promedio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $nro = 1; @endphp
+                                @foreach ($asignaciones as $asignacion )
+                                    @php
+                                        $est = $asignacion->matriculacion->estudiante;
+                                        $notas = [];
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $nro++ }}</td>
+                                        <td>{{ $est->nombres }} {{ $est->apellidos }}</td>
+                                        <td>{{ $est->ci }}</td>
+
+                                        @foreach ($calificaciones as $calificacion )
+                                            @php
+                                                $detalle = $calificacion->detalleCalificaciones
+                                                            ->firstWhere('estudiante_id', $est->id);
+                                                $nota = $detalle ? $detalle->nota : '-';
+                                                $notas[] = is_numeric($nota) ? floatval($nota) : null;
+                                            @endphp
+                                            <td style="text-align: center">
+                                                {{ $nota }}
+                                            </td>
+                                        @endforeach
+
+                                        @php
+                                            $promedio = collect($notas)->filter()->avg();
+                                        @endphp
+                                        <td style="text-align: center;background-color:#b6ccf0">
+                                            <b>{{ number_format($promedio, 2) }}</b>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+
+
+        <div class="col-md-6">
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h3 class="card-title">
                         <b>
-                            Asistencias Registrados Gestion: {{ $grupo->gestion->nombre }} - Nivel: {{ $grupo->nivel->nombre }} - Periodo: {{ $grupo->periodo->nombre }} -
-                            Carrera : {{ $grupo->carrera->nombre }} - Materia: {{ $grupo->materia->nombre }} - Turno: {{ $grupo->turno->nombre }} - 
-                            Paralelo: {{ $grupo->paralelo->nombre }}
+                            Calificaciones Registrados
                         </b>
                     </h3>
 
                     <div class="card-tools">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Tomar Asistencia
+                            Crear Calificacion <i class="fas fa-plus"></i>
                         </button>
 
                         <!-- Modal -->
@@ -36,24 +109,32 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ url('/admin/asistencias/create') }}" method="POST">
+                                        <form action="{{ url('/admin/calificaciones/create') }}" method="POST">
                                             @csrf
                                             <input type="text" name="grupo_academico_id" value="{{ $id }}"
                                                 hidden>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="">Fecha de la Asistencia</label>
-                                                        <input type="date" name="fecha" class="form-control" required>
+                                                        <label for="">Tipo de Calificacion</label>
+                                                        <input type="text" name="tipo" class="form-control"
+                                                            required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="">Observacion(opcional)</label>
-                                                        <input type="text" name="observacion" class="form-control"
-                                                            placeholder="Observacion">
+                                                        <label for="">Descripcion(Opcional)</label>
+                                                        <input type="text" name="descripcion" class="form-control">
                                                     </div>
                                                 </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="">Fecha de Calificacion</label>
+                                                        <input type="date" name="fecha" class="form-control"
+                                                            required>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-md-12">
                                                     <label for="">Estudiantes</label>
                                                     <table
@@ -63,7 +144,7 @@
                                                             <th style="text-align: center">Nombre</th>
                                                             <th style="text-align: center">Apellidos</th>
                                                             <th style="text-align: center">Cedula</th>
-                                                            <th style="text-align: center">Asistencia</th>
+                                                            <th style="text-align: center">Nota</th>
                                                         </tr>
                                                         @foreach ($asignaciones as $asignacion)
                                                             <tr>
@@ -73,16 +154,15 @@
                                                                 <td>{{ $asignacion->matriculacion->estudiante->apellidos }}
                                                                 </td>
                                                                 <td>{{ $asignacion->matriculacion->estudiante->ci }}</td>
-                                                                <td style="text-align: center">
-                                                                    <input type="radio"
-                                                                        name="criterio[{{ $asignacion->matriculacion->estudiante->id }}]"
-                                                                        value="presente" required> Presente
-                                                                    <input type="radio"
-                                                                        name="criterio[{{ $asignacion->matriculacion->estudiante->id }}]"
-                                                                        value="licencia" required> Licencia
-                                                                    <input type="radio"
-                                                                        name="criterio[{{ $asignacion->matriculacion->estudiante->id }}]"
-                                                                        value="falta" required> Falta
+                                                                <td>
+                                                                    <center>
+                                                                        <input type="text"
+                                                                            style=" width: 100px; text-align:center"
+                                                                            name="nota[]" class="form-control" required>
+                                                                    </center>
+                                                                    <input type="text" name="estudiante_id[]"
+                                                                        value="{{ $asignacion->matriculacion->estudiante_id }}"
+                                                                        hidden>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -111,8 +191,9 @@
                             <tr>
                                 <th style="text-align: center">Nro</th>
                                 <th style="text-align: center">Grupo Academico</th>
+                                <th style="text-align: center">Tipo de Calificacion</th>
+                                <th style="text-align: center">Descripcion</th>
                                 <th style="text-align: center">Fecha</th>
-                                <th style="text-align: center">Observacion</th>
                                 <th style="text-align: center">Acción</th>
                             </tr>
                         </thead>
@@ -120,30 +201,30 @@
                             @php
                                 $contador = 1;
                             @endphp
-                            @foreach ($asistencias as $asistencia)
+                            @foreach ($calificaciones as $calificacion)
                                 <tr>
                                     <td style="text-align: center">{{ $contador++ }}</td>
-                                    <td>{{ $asistencia->grupoAcademico->materia->nombre }}</td>
-                                    <td>{{ $asistencia->fecha }}</td>
-                                    <td>{{ $asistencia->observacion }}</td>
+                                    <td>{{ $calificacion->grupoAcademico->materia->nombre }}</td>
+                                    <td>{{ $calificacion->tipo }}</td>
+                                    <td>{{ $calificacion->descripcion }}</td>
+                                    <td>{{ $calificacion->fecha }}</td>
                                     <td>
                                         <!-- Button trigger modal -->
                                         <div class="d-flex justify-content-center">
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#modal-asistencia{{ $asistencia->id }}">
-                                                <i class="fas fa-list"></i> Ver Asistencia
+                                                data-target="#modal-calificacion{{ $calificacion->id }}">
+                                                <i class="fas fa-list"></i> Ver Calificacion
                                             </button>
-                                            <form
-                                                action="{{ url('/admin/asistencias', $asistencia->id) }}"
-                                                method="post" onclick="preguntar1{{ $asistencia->id }}(event)"
-                                                id="miFormulario1{{ $asistencia->id }}">
+                                            <form action="{{ url('/admin/calificaciones', $calificacion->id) }}"
+                                                method="post" onclick="preguntar1{{ $calificacion->id }}(event)"
+                                                id="miFormulario1{{ $calificacion->id }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"><i
-                                                        class="fas fa-trash"></i> Eliminar Asistencia</button>
+                                                        class="fas fa-trash"></i> Eliminar Calificacion</button>
                                             </form>
                                             <script>
-                                                function preguntar1{{ $asistencia->id }}(event) {
+                                                function preguntar1{{ $calificacion->id }}(event) {
                                                     event.preventDefault();
                                                     Swal.fire({
                                                         title: '¿Desea eliminar esta registro?',
@@ -156,7 +237,7 @@
                                                         denyButtonText: 'Cancelar',
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
-                                                            var form = $('#miFormulario1{{ $asistencia->id }}');
+                                                            var form = $('#miFormulario1{{ $calificacion->id }}');
                                                             form.submit();
                                                         }
                                                     });
@@ -165,12 +246,12 @@
                                         </div>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="modal-asistencia{{ $asistencia->id }}" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="modal-calificacion{{ $calificacion->id }}"
+                                            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header" style="background-color: #17a2b8">
-                                                        <h5 class="modal-title" id="exampleModalLabel"> Asistencia
+                                                        <h5 class="modal-title" id="exampleModalLabel"> Calificaciones
                                                             Registrados</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
@@ -181,15 +262,15 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label for="">Fecha de la Asistencia</label>
-                                                                    <p>{{ $asistencia->fecha }}</p>
+                                                                    <label for="">Fecha de la Calificacion</label>
+                                                                    <p>{{ $calificacion->fecha }}</p>
                                                                 </div>
                                                             </div>
-                                                            @if (!($asistencia->observacion == null))
+                                                            @if (!($calificacion->descripcion == null))
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label for="">Observacion</label>
-                                                                        <p>{{ $asistencia->observacion }}</p>
+                                                                        <label for="">Descripcion</label>
+                                                                        <p>{{ $calificacion->descripcion }}</p>
                                                                     </div>
                                                                 </div>
                                                             @endif
@@ -202,9 +283,9 @@
                                                                         <th style="text-align: center">Nombre</th>
                                                                         <th style="text-align: center">Apellidos</th>
                                                                         <th style="text-align: center">Cedula</th>
-                                                                        <th style="text-align: center">Asistencia</th>
+                                                                        <th style="text-align: center">Calificacion</th>
                                                                     </tr>
-                                                                    @foreach ($asistencia->detalleAsistencias as $detalle)
+                                                                    @foreach ($calificacion->detalleCalificaciones as $detalle)
                                                                         <tr>
                                                                             <td style="text-align: center">
                                                                                 {{ $loop->iteration }}</td>
@@ -215,16 +296,7 @@
                                                                             <td>{{ $detalle->estudiante->ci }}
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                @if ($detalle->estado == 'presente')
-                                                                                    <span
-                                                                                        class="badge badge-success">Presente</span>
-                                                                                @elseif($detalle->estado == 'licencia')
-                                                                                    <span
-                                                                                        class="badge badge-warning">Licencia</span>
-                                                                                @else
-                                                                                    <span
-                                                                                        class="badge badge-danger">Falta</span>
-                                                                                @endif
+                                                                                {{ $detalle->nota }}
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
